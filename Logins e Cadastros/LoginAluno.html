@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <title>Horas complementares</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .rowTable:hover {
+      cursor: pointer;
+      background: aliceblue;
+      transition: 1s;
+    }
+
+    .mybtn {
+      border: 1px solid powderblue;
+      background-color: aliceblue;
+      margin-top: 50px; 
+    }
+    .btn-file {
+      position: relative;
+      overflow: hidden;
+     
+    }
+    .mybtn:hover {
+      background-color: skyblue;
+    }
+    .mybtn:active {
+      background-color: lightblue;
+    }
+    .col-centered {
+      margin-top: 100px;
+    }
+    .btn-file input[type=file] {
+      position: absolute;
+      top: 0;
+      right: 0;
+      min-width: 100%;
+      min-height: 100%;
+      font-size: 100px;
+      text-align: right;
+      filter: alpha(opacity=0);
+      opacity: 0;
+      outline: none;
+      background: white;
+      cursor: inherit;
+      display: block;
+    }
+    .rowTable:active {
+      background: lightblue;
+    }
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+
+    }
+    .form-control {
+      width: 50%;
+    }
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 120%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+  </style>
+</head>
+
+<body>
+<header>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">UTFTIME</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+    </div>
+  </div>
+</nav>
+</header>
+<div class="container-fluid text-center">    
+  <div class="row content">
+    <div class="col-sm-8 text-left"> 
+      <div class="container-fluid col-md-offset-6 col-centered">
+        <h2>Login Aluno</h2>
+        <hr>  
+        <div class="form-group">
+          <label for="sel1">RA:</label>
+          <input type="text" class="form-control" id="sel1" placeholder="Somente números">
+        </div>
+        <div class="form-group">
+          <label for="sel2">Senha:</label>
+          <input type="password" class="form-control" id="sel2">
+        </div>
+        <p>Se você não tem uma conta, crie uma <a href="#">aqui<a></p>
+        <div class="form-group">
+          <button type="submit" class="btn mybtn btn-lg">Entrar</button>
+        </div>
+        <hr>
+      </div>
+    </div>
+  </div> 
+</div>
+<footer>
+  <div>
+    <hr>
+  </div>
+</footer>
+
+
+<!--<script type="text/javascript" src="teste.js"></script>-->
+</body>
+</html>
