@@ -14,11 +14,12 @@
       background: aliceblue;
       transition: 1s;
     }
-
     .mybtn {
+      position: relative;
       border: 1px solid powderblue;
       background-color: aliceblue;
-      margin-top: 50px; 
+      margin-left: 345px;
+      top: -200px;
     }
     .btn-file {
       position: relative;
@@ -30,9 +31,6 @@
     }
     .mybtn:active {
       background-color: lightblue;
-    }
-    .col-centered {
-      margin-top: 100px;
     }
     .btn-file input[type=file] {
       position: absolute;
@@ -55,13 +53,9 @@
     .navbar {
       margin-bottom: 0;
       border-radius: 0;
-
     }
     .form-control {
       width: 50%;
-    }
-    .senha, .ra {
-      width: 71%;
     }
     /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
     .row.content {height: 450px}
@@ -75,7 +69,7 @@
     
     /* Set black background color, white text and some padding */
     footer {
-      
+      background-color: #555;
       color: white;
       padding: 15px;
     }
@@ -90,56 +84,85 @@
     }
   </style>
 </head>
-
 <body>
-<header>
+
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
       <a class="navbar-brand" href="#">UTFTIME</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">Enviar</a></li>
+        <li><a href="#">Enviados</a></li>
+        <li><a href="#">Progresso</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+         <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+      </ul>
     </div>
   </div>
 </nav>
-</header>
+  
 <div class="container-fluid text-center">    
   <div class="row content">
-    <div class="col-sm-8 text-left"> 
-      <div class="container-fluid col-md-offset-6 col-centered">
-        <h2>Login Aluno</h2>
-        <hr>  
-        <div class="form-group">
-          <label for="sel1">RA:</label>
-          <div class="input-group ra">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input type="text" class="form-control" id="sel1" placeholder="Somente números">
-          </div>
-          
-        </div>
-        <div class="form-group">
-          <label for="sel2">Senha:</label>
-         <div class="input-group senha">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-            <input type="password" class="form-control" id="sel5" minlength="4" maxlength="8" size="8" placeholder="até 8 digitos">
-          </div>
-        </div>
-        <p>Se você não tem uma conta, crie uma <a href="#">aqui<a></p>
-        <div class="form-group">
-          <button type="submit" class="btn mybtn btn-lg">Entrar</button>
-        </div>
-        <hr>
-      </div>
+    <div class="col-sm-2 sidenav">
     </div>
-  </div> 
-</div>
-<footer>
-  <div>
-    <hr>
+    <div class="col-sm-8 text-left"> 
+    <div class="container-fluid">
+      <h2>Envio de arquivos</h2>
+      <hr>  
+    <div class="form-group">
+      <label for="sel1">Selecione o Grupo:</label>
+      <select class="form-control" id="sel1">
+        <option>Grupo 1</option>
+        <option>Grupo 2</option>
+        <option>Grupo 3</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="sel2">Selecione o Item:</label>
+      <select class="form-control" id="sel2">
+        <option>aqui vai os itens relativos a cada grupo</option>
+      </select>
+    </div>
+    <div class="form-group"> 
+      <label for="sel3">Qual o seu Curso?</label>
+      <input type="text" class="form-control" id="sel3" placeholder="Ex: engenharia de software">
+    </div>
+    <div class="form-group">
+      <label for="sel4">Qnts. pontos você acredita que fez?</label>
+      <input type="text" class="form-control" id="sel4" placeholder="Ex: 20">
+    </div>
+    <div class="form-group">
+      <label for="sel4">Fazer Upload do arquivo:</label>
+      <input type="hidden" name="MAX_FILE_SIZE" value="100" class="form-control" /> 
+      <label class="btn btn-default btn-file">
+        Escolher um arquivo <input type="file" style="display: none;">
+      </label>
+      
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn mybtn btn-lg ">Enviar</button>
+    </div>
+    </div>
+    </div>
+    <div class="col-sm-2 sidenav">
+
+    </div>
   </div>
+ 
+</div>
+
+<footer class="container-fluid text-center">
+  <p>Horas Complementares</p>
 </footer>
-
-
 <!--<script type="text/javascript" src="teste.js"></script>-->
 </body>
 </html>
