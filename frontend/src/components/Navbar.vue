@@ -11,7 +11,7 @@
 </template>
 <script>
   export default {
-    name: 'vazio',
+    name: 'navbar',
     data () {
       return {
         msg: 'aaa'
