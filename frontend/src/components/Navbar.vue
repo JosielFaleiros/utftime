@@ -14,7 +14,7 @@
     name: 'navbar',
     data () {
       return {
-        msg: 'aaa'
+        msg: ''
       }
     }
   }
