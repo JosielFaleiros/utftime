@@ -1,7 +1,7 @@
 <template>
-    <div class="container-fluid text-center">
+    <footer class="container-fluid text-center">
         <p>Horas Complementares</p>
-    </div>
+    </footer>
 </template>
 <script>
   export default {
@@ -9,7 +9,7 @@
   }
 </script>
 <style>
-    #footer {
+    footer {
       background-color: #555;
       color: white;
       padding: 15px;
