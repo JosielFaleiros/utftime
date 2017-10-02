@@ -5,19 +5,15 @@ module.exports = {
             idUsuario: {
                 allowNull: false,
                 primaryKey: true,
+                autoIncrement: true,
                 type: Sequelize.INTEGER,
             },
-            login: {
+            email: {
                 allowNull: false,
                 unique: true,
-                type: Sequelize.STRING
+                type: Sequelize.STRING(150)
             },
             senha: {
-                allowNull: false,
-                unique: true,
-                type: Sequelize.STRING
-            },
-            salt: {
                 allowNull: false,
                 type: Sequelize.STRING
             },

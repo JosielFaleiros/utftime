@@ -4,42 +4,39 @@ module.exports = (sequelize, DataTypes) => {
         idUsuario: {
             allowNull: false,
             primaryKey: true,
-            type: Sequelize.INTEGER,
+            autoIncrement: true,
+            type: DataTypes.INTEGER,
         },
-        login: {
+        email: {
             allowNull: false,
             unique: true,
-            type: Sequelize.STRING
+            type: DataTypes.STRING(150)
         },
         senha: {
             allowNull: false,
-            unique: true,
-            type: Sequelize.STRING
-        },
-        salt: {
-            allowNull: false,
-            type: Sequelize.STRING
+            type: DataTypes.STRING
         },
         nome: {
             allowNull: false,
-            type: Sequelize.STRING
+            type: DataTypes.STRING
         },
         papel: {
             allowNull: false,
-            type: Sequelize.STRING
+            type: DataTypes.STRING
         },
         createdAt: {
             allowNull: false,
-            type: Sequelize.DATE
+            type: DataTypes.DATE
         },
         updatedAt: {
             allowNull: false,
-            type: Sequelize.DATE
+            type: DataTypes.DATE
         }
     }, {
-    classMethods: {
-        associate: function(models) {
-        // associations can be defined here
+        tableName: 'Usuario',
+        classMethods: {
+            associate: function(models) {
+            // associations can be defined here
         }
     }
     });
