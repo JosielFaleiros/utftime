@@ -57,6 +57,12 @@
       border-radius: 0;
 
     }
+    .senha, .ra {
+      width: 71%;
+    }
+    a[href*="LoginAluno"] {
+      text-decoration: none;
+    }
     .form-control {
       width: 50%;
     }
@@ -68,6 +74,11 @@
       padding-top: 20px;
       background-color: #f1f1f1;
       height: 120%;
+    }
+    #seAluno {
+      margin-right: 30px;
+      margin-top: 10px;
+      color: white;
     }
     
     /* Set black background color, white text and some padding */
@@ -92,16 +103,11 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#">UTFTIME</a>
+      <a class="navbar-brand" href="index.html">UTFTIME</a>
     </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-     
-    </div>
+   <ul class="nav navbar-nav navbar-right">
+        <li><p id="seAluno">Se você é o aluno entre <a href="LoginAluno.html">aqui</a></li>
+    </ul> 
   </div>
 </nav>
   
@@ -113,13 +119,19 @@
         <hr>  
         <div class="form-group">
           <label for="sel1">SEAP:</label>
-          <input type="text" class="form-control" id="sel1" placeholder="Somente números">
+          <div class="input-group ra">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input type="text" class="form-control" id="sel1" placeholder="Somente números">
+          </div>
         </div>
         <div class="form-group">
-          <label for="sel2">Senha:</label>
-          <input type="password" class="form-control" id="sel2">
+         <label for="sel2">Senha:</label>
+         <div class="input-group senha">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+            <input type="password" class="form-control" id="sel5" minlength="4" maxlength="8" size="8" placeholder="até 8 digitos">
+         </div>
         </div>
-        <p>Se você não tem uma conta, solicite ao administrador.</p>
+        <p>Se você não tem uma conta, crie uma <a href="cadastroProfessor.html">aqui<a></p>
         <div class="form-group">
           <button type="submit" class="btn mybtn btn-lg">Entrar</button>
         </div>

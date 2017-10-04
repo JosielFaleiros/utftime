@@ -63,6 +63,9 @@
     .senha, .ra {
       width: 71%;
     }
+    a[href*="LoginProfessor"] {
+      text-decoration: none;
+    }
     /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
     .row.content {height: 450px}
     
@@ -72,7 +75,11 @@
       background-color: #f1f1f1;
       height: 120%;
     }
-    
+    #seProfessor {
+      margin-right: 30px;
+      margin-top: 10px;
+      color: white;
+    }
     /* Set black background color, white text and some padding */
     footer {
       
@@ -96,10 +103,12 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">UTFTIME</a>
+      <a class="navbar-brand" href="index.html">UTFTIME</a>
     </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-    </div>
+    
+    <ul class="nav navbar-nav navbar-right">
+        <li><p id="seProfessor">Se você é o professor entre <a href="LoginProfessor.html">aqui</a></li>
+    </ul> 
   </div>
 </nav>
 </header>
@@ -124,7 +133,7 @@
             <input type="password" class="form-control" id="sel5" minlength="4" maxlength="8" size="8" placeholder="até 8 digitos">
           </div>
         </div>
-        <p>Se você não tem uma conta, crie uma <a href="#">aqui<a></p>
+        <p>Se você não tem uma conta, crie uma <a href="cadastroAluno.html">aqui<a></p>
         <div class="form-group">
           <button type="submit" class="btn mybtn btn-lg">Entrar</button>
         </div>

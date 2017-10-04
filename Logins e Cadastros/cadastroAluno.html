@@ -57,11 +57,9 @@
       border-radius: 0;
 
     }
+  
    .form-control, .email{
       width: 50%;
-    }
-    .senha {
-      width: 30%;
     }
     /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
     .row.content {height: 450px}
@@ -73,7 +71,25 @@
       height: 135%;
 
     }
-    
+    p {
+      margin-right: 30px;
+      margin-top: 10px;
+      color: white;
+    }
+    .nome, .curso, .ra {
+      width: 80%;
+    }
+    .email {
+      width: 40%;
+    }
+    .senha {
+      width: 50%;
+    }
+    .senhalogin, .ralogin {
+      width: 40%;
+    }
+
+    }
     /* Set black background color, white text and some padding */
     footer {
       background-color: #555;
@@ -89,6 +105,15 @@
         padding: 15px;
       }
       .row.content {height:auto;} 
+      .nome, .curso, .ra {
+          width: 100%;
+      }
+      .email {
+        width: 50%;
+      }
+      .senha {
+        width: 60%;
+      }
     }
   </style>
 </head>
@@ -97,56 +122,52 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-
-      <a class="navbar-brand" href="#">UTFTIME</a>
+      <a class="navbar-brand" href="index.html">UTFTIME</a>
     </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-      </ul>
       <ul class="nav navbar-nav navbar-right">
-         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
+        <li><p>Se você é o professor entre <a href="Loginprofessor.html">aqui</a></li>
+      </ul> 
   </div>
 </nav>
 </header>
   
-<div class="container-fluid text-center">    
+<div class="container">    
   <div class="row content">
-    <div class="col-sm-2 sidenav">
-    </div>
-    <div class="col-sm-8 text-left"> 
       <div class="container-fluid">
         <h2>Cadastro de Aluno</h2>
-        <hr> 
-        <div class="form-group">
+        <hr style="width: 50%; margin-left: -50%;">
+        <div class="form-group nome">
           <label for="sel1">Nome Completo:</label>
           <input type="text" class="form-control" id="sel1">
         </div> 
-        <div class="form-group">
+        <div class="form-group ra">
 
           <label for="sel2">RA:</label>
           <input type="text" class="form-control" id="sel2" placeholder="Somente números">
         </div>
-        <div class="form-group">
+        <div class="form-group curso">
           <label for="sel3">Curso:</label>
           <input type="text" class="form-control" id="sel3" placeholder="Ex: Engenharia de Software">
         </div>
-        <div class="form-group email">
+        <div class="form-group ">
           <label for="sel4">Email Institucional:</label>
-          <div class="input-group">
+          <div class="input-group email">
             <span class="input-group-addon">@</span>
             <input type="email" class="form-control" id="sel3" placeholder="exemplo@email.com">
           </div>
         </div>
-        <div class="form-group">
-          <label for="sel5">Criar Senha:</label>
+      
+        <div class="form-group senha">
+          <h3>Criar uma senha</h3>
+          <hr>
+          <label for="sel5">Senha:</label>
           <div class="input-group senha">
             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
             <input type="password" class="form-control" id="sel5" minlength="4" maxlength="8" size="8" placeholder="até 8 dígitos">
           </div>
-          <div class="form-group senha">
-          <label for="sel6">Repetir Senha:</label>
-          <div class="input-group">
+          <div class="form-group">
+          <label for="sel6">Repetir a Senha:</label>
+          <div class="input-group senha">
             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
             <input type="password" class="form-control" id="sel6" minlength="4" maxlength="8" size="8" placeholder="a senha que você criou">
           </div>
@@ -156,9 +177,6 @@
         </div>  
       </div>
     </div>
-  </div>
-  <div class="col-sm-2 sidenav">
-  </div>
   </div>
 </div>
 <footer class="container-fluid text-center">  
