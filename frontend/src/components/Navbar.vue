@@ -14,11 +14,14 @@
     name: 'navbar',
     data () {
       return {
-        msg: 'aaa'
+        msg: ''
       }
     }
   }
 </script>
 <style>
-
+  .navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+  }
 </style>
