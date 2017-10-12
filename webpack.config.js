@@ -4,8 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
     entry: {
-        app: './src/home/main.js',
-        login: './src/login/login.js'
+        app: './src/home/main.js'
     }, 
     output: {
         filename: '[name].bundle.js',
@@ -26,13 +25,7 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: './src/home/index.html',
-            chunks: ['app']
-        }),
-        new HtmlWebpackPlugin({
-            filename: 'loginAluno.html',
-            template: './src/login/loginAluno.html',
-            chunks: ['login']
+            template: './src/home/index.html'
         }),
         new webpack.HotModuleReplacementPlugin()
     ]

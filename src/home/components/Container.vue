@@ -7,6 +7,7 @@
           <div class="container-fluid cont">
             <h1>HORAS COMPLEMENTARES</h1>
             <h2>UTFTIME</h2>
+            <router-view class="col-sm-12"></router-view>
           </div>
           </div>
           <div class="col-sm-2 sidenav">

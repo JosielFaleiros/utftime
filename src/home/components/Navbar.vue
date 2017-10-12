@@ -5,6 +5,7 @@
             <a class="navbar-brand" href="#">UTFTIME</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
+              <router-link to="/login">Login</router-link>
             </div>
         </div>
     </nav>
