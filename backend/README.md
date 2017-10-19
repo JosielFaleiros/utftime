@@ -60,6 +60,12 @@ git push origin gh-pages
 -> Começa a trabalhar puxando o estado atual do repositório:
 ```
 git pull origin backend
+
+cd backend
+npm install
+
+sequelize db:create
+sequelize db:migrate
 ```
 -> trabalhar nas funcionalidades do sistema :D
 -> Adicionar todas as alterações para o commit:
