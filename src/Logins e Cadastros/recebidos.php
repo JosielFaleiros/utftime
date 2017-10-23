@@ -128,31 +128,9 @@
 </head>
 <body>
 
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>                        
-        </button>
-      <a class="navbar-brand" href="#">UTFTIME</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar" >
-        <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Entradas</a></li>
-            <li><a href="#">Aprovados</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-        </ul>
-     </div>
-    </div>
-</nav>
+
 <div class="container-fluid text-center">    
   <div class="row content">
-    <div class="col-sm-2 sidenav">
-    </div>
     <div class="col-sm-8 text-left"> 
     <div class="container-fluid cont">
              
@@ -169,74 +147,38 @@
                     </tr>
                   </thead>
                   <tbody>
-           
-                    <tr class="rowTable" id="line1">
-                      
-                      <td onclick="location.href='#'">Grupo 1</td>
-                      <td onclick="location.href='#'">Ítem I</td>
-                      <td onclick="location.href='#'" class="pencil">20</td>
-                      <td onclick="document.getElementsByClassName('rowTable')[0].style.display='none'"><i class="glyphicon glyphicon-ok-circle aprovado"></i></td>
-                      <td><i class="glyphicon glyphicon-remove-circle devolvido"></i></td>
-                      <td><i class="glyphicon glyphicon-save ative"></i></td>
+                    <!--Conexão com o banco-->
+                    <?php
+					$count = 0;
+                    $conn = new PDO("mysql:dbname=web;host=localhost", "root", "lichiking");
+                    $stmt = $conn->prepare("SELECT * FROM documentos");
+                    $stmt->execute();
+                    
+                    while($result = $stmt->fetch(PDO::FETCH_ASSOC)):
+                    ?>
+                    <!--Construção da tabela com os dados do bd-->
 
+                    <tr class="rowTable">
+                    <td><?= $result["grupo"]?></td>
+                    <td><?= $result["item"]?></td>
+                    <td><?= $result["pontos"]?></td>
+                    <td onclick="document.getElementsByClassName('rowTable')[<?= $count?>].style.display = 'none'"><i class="glyphicon glyphicon-ok-circle aprovado"></i></td>
+                    <td onclick="document.getElementsByClassName('rowTable')[<?= $count++?>].style.display = 'none'"><i class="glyphicon glyphicon-remove-circle devolvido"></i></td>
+                      <td><i class="glyphicon glyphicon-save ative"></i></td>
                     </tr>
+					
+                    <?php endwhile ?>
                      
-                    <tr class="rowTable">
-
-                      <td onclick="location.href='#'">Grupo 2</td>
-                      <td onclick="location.href='#'">Item III</td>
-                      <td onclick="location.href='#'">10</td>
-                      <td><i class="glyphicon glyphicon-ok-circle aprovado"></i></td>
-                      <td><i class="glyphicon glyphicon-remove-circle devolvido"></i></td>
-                      <td><i class="glyphicon glyphicon-save ative"></i></td>
-
-                    </tr>
-
-                    <tr class="rowTable">
-
-                      <td onclick="location.href='#'">Grupo 3</td>
-                      <td onclick="location.href='#'">Ítem VI</td>
-                      <td onclick="location.href='#'">10</td>
-                      <td><i class="glyphicon glyphicon-ok-circle aprovado"></i></td>
-                      <td><i class="glyphicon glyphicon-remove-circle devolvido"></i></td>
-                      <td><i class="glyphicon glyphicon-save ative"></i></td>
-
-                    </tr>
                   </tbody>
                 </table>
-              <script>
-                function selecionador(){
-                  var element1 = document.getElementById("a1");
-                  var element2 = document.getElementById("d1");
-                  if(element1.checked) {
-                    element2.setAttribute("disabled","true");
-                  } else {
-                    element2.disabled = false;
-                  }
-                  if(element2.checked) {
-                    element1.setAttribute("disabled","true");
-                  } else {
-                    element1.disabled = false;
-                  }
-                }
-                function aprovado() {
-                  var element1 = document.getElementsByClassName("aprovado")[1];
-                  var element2 = document.getElementsByClassName("rowTable")[1];
-                  
-                }
               </script>
     </div>
-    </div>
-    <div class="col-sm-2 sidenav">
-
     </div>
   </div>
  
 </div>
 
-<footer class="container-fluid text-center">
-  <p>Horas Complementares</p>
-</footer>
+
 <!--<script type="text/javascript" src="teste.js"></script>-->
 </body>
 </html>
