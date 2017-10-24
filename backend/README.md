@@ -2,23 +2,13 @@
 
 # Desenvolvimento:
 
+## API
+A documentação da api para comunicação com o Back-End foi feita através do Swagger, ela é importante para que os desenvolvedores do Front-End consigam compreender bem como a API funciona. Ela pode ser encontra neste link:
+[https://app.swaggerhub.com/apis/utftime/utftime/1.0.0](https://app.swaggerhub.com/apis/utftime/utftime/1.0.0)
+
 ## Divisão do projeto:
 
 O projeto está dividido em duas partes devido as tecnologias utilizadas em cada uma permitir esta separação de responsabilidades, o front-end e o back-end, onde o front-end constitui da parte do projeto que interage com o usuário final através de interfaces visuais, e o back-end são partes de aplicação que fazem o seu  trabalho apenas no servidor.
-
-## Front-End
-Deve ser desenvolvido no branch [gh-pages](https://github.com/JosielFaleiros/utftime/tree/gh-pages) que por ser independente do back-end, NÃO deve ser feito o merge deste com o branch do back-end.
-    (O nome gh-pages é para podermos usar o recurso [github pages](https://pages.github.com/). )
-
-# Para começar o projeto no front-end:
-Executar os comandos abaixo e seguir a estrutura de arquivos do Vue:
-```
-git clone https://github.com/JosielFaleiros/utftime.git
-cd utftime
-// colocar o comando para executar o template do vue aqui.
-// trabalhar nas funcionalidades do sistema :D
-```
-//TODO colocar aqui a sequência de trabalho para o front-end funcionar com o Vue.
 
 ## Back-End
 Deve ser desenvolvido no branch backend[backend](https://github.com/JosielFaleiros/utftime/tree/backend), que por ser independente do front-end, NÃO deve ser feito merge deste com o branch gh-pages.
@@ -41,20 +31,7 @@ node app.js
 * [Git](https://git-scm.com/) -  Sistema de Controle de Versões Distribuído
 
 ### Fluxo de trabalho front-end:
--> Começa a trabalhar puxando o estado atual do repositório:
-```
-git pull origin gh-pages
-```
--> trabalhar nas funcionalidades do sistema :D
--> Adicionar todas as alterações para o commit:
-```
-git add .
-```
--> Realizar um commit, dando uma nome que descreva as alterações brevemente.
-```
-git commit -m "tal alteração/adição de funcionalidade foi realizada ;)"
-git push origin gh-pages
-```
+Encontra-se no branch frontend agora.
 
 ### Fluxo de trabalho back-end:
 -> Começa a trabalhar puxando o estado atual do repositório:

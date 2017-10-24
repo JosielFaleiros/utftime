@@ -7,6 +7,7 @@ const bodyParser = require('body-parser')
 
 const index = require('./app/routes/index')
 const routesusuario = require('./app/routes/routesusuario')
+const routesdocumento = require('./app/routes/routesdocumento')
 
 const authenticmiddle = require('./app/services/middleware')
 
@@ -26,6 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/', index)
 app.use('/', routesusuario)
+app.use('/', routesdocumento)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

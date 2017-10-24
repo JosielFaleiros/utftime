@@ -1,24 +1,29 @@
 const usuarioservice = require('../services/usuarioservice')
-const bcrypt = require('bcrypt')
-const path = require('path')
 
 const express = require('express')
 const router = express.Router()
-const config = require('../../config/config')['development']
-const jwt = require('jsonwebtoken')
 
 /*
-/api/login
-/logout
-/api/registrar
+POST - /api/login
+GET - /logout
+POST - /api/recuperar
+
+POST - /api/usuario
+PUT - /api/usuario
 */
 
-/* POST . */
 router.post('/api/login', usuarioservice.doLogin)
 
 router.get('/logout', usuarioservice.doLogout)
 
-router.post('/api/registrar', usuarioservice.create)
+router.post('/api/recuperar', usuarioservice.recoverPassword)
+
+/*
+This is to create a new user
+*/
+router.post('/api/usuario', usuarioservice.create)
+
+router.put('/api/usuario', usuarioservice.update)
 
 /*
 URL'S FOR TESTING PURPOSES

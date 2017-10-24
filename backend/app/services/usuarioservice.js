@@ -1,4 +1,3 @@
-const path = require('path')
 const models = require('../models')
 const bcrypt = require('bcrypt')
 const config = require('../../config/config')['development']
@@ -8,7 +7,7 @@ function doLogin(req, res, next) {
   // TODO: try  to use captcha on login
   console.log(req.body)
   if (!req.body.email || !req.body.senha ) {
-    return res.send({ auth: false, message: 'Email ou senha incorreto' })
+    return res.status(200).send({ mensagem: 'Email ou senha incorretos.' })
   } else {
     models.Usuario.find({
       where: {email: req.body.email}
@@ -26,17 +25,17 @@ function doLogin(req, res, next) {
             res.cookie('token', token)
             console.log('/login set new token:')
             console.log(token)
-            return res.status(200).send({
-              redirectURL: '/documentos'
+            return res.status(302).send({
+              redirecturl: '/documentos'
             })
           } else {
             //MAYBE RETORNAR ESTE JSON return res.status(401)
             // .send({ auth: false, token: null })
-            return res.send({ auth: false, message: 'Email ou senha incorreto' })
+            return res.status(200).send({ mensagem: 'Email ou senha incorretos.' })
           }
         })
       } else {
-        return res.send({ auth: false, message: 'Email ou senha incorreto' })
+        return res.status(200).send({ mensagem: 'Email ou senha incorretos.' })
       }
     })
   }
@@ -47,13 +46,13 @@ function doLogout(req, res, next) {
   Delete cookie
   */
   res.cookie('token', '', {expires: new Date(0)})
-  return res.redirect('/login')
+  return res.status(302).redirect('/login')
 }
 
 function recoverPassword(req, res, next) {
   // TODO: enviar um link para preencher nova senha por e-mail.
   // TODO: create new layout to fill new password
-  res.send({mensagem: 'link de recuperação enviado para o e-mail'})
+  res.status(201).send({mensagem: 'Link de recuperação enviado para o e-mail.'})
 }
 
 function findAll(req, res, next) {}
@@ -63,8 +62,8 @@ function find(req, res, next) {}
 function create(req, res, next) {
   console.log(req.body);
   if (!req.body.nome || !req.body.email || !req.body.senha ) {
-    return res.status(300)
-    .send({ message: 'Devem ser nome, email e senha válidos.' })
+    return res.status(200)
+    .send({ mensagem: 'Dados insuficientes ou usuário com e-mail já existe.' })
   } else {
     bcrypt.hash(req.body.senha, 12).then( function(hash) {
       let usuario = Object.assign({}, req.body, {})
@@ -83,19 +82,23 @@ function create(req, res, next) {
         //TODO SECURE TOKEN res.cookie('token', token, { httpOnly: true, secure: true })
         res.cookie('token', token)
         console.log(token)
-        return res.status(200).send({
+        return res.status(201).send({
           redirectURL: '/documentos'
         })
       }).catch(function (err) {
         // console.log(err)
-        return res.status(300)
-        .send({ message: 'usuário já existe ou dados incorretos.' })
+        return res.status(200)
+        .send({ mensagem: 'Dados insuficientes ou usuário com e-mail já existe.' })
       })
     })
   }
 }
 
-function update(req, res, next) {}
+function update(req, res, next) {
+  // TODO: implement service
+  // success response: {'mensagem': 'Usuário atualizado com sucesso.'}
+  res.status(200).send({mensagem: 'Usuário não pode ser atualizado com estes dados.'})
+}
 
 function destroy(req, res, next) {}
 
