@@ -1,44 +1,49 @@
-'use strict';
-module.exports = (sequelize, DataTypes) => {
-    var Usuario = sequelize.define('Usuario', {
-        idUsuario: {
-            allowNull: false,
-            primaryKey: true,
-            autoIncrement: true,
-            type: DataTypes.INTEGER,
-        },
-        email: {
-            allowNull: false,
-            unique: true,
-            type: DataTypes.STRING(150)
-        },
-        senha: {
-            allowNull: false,
-            type: DataTypes.STRING
-        },
-        nome: {
-            allowNull: false,
-            type: DataTypes.STRING
-        },
-        papel: {
-            allowNull: false,
-            type: DataTypes.STRING
-        },
-        createdAt: {
-            allowNull: false,
-            type: DataTypes.DATE
-        },
-        updatedAt: {
-            allowNull: false,
-            type: DataTypes.DATE
-        }
-    }, {
-        tableName: 'Usuario',
-        classMethods: {
-            associate: function(models) {
-            // associations can be defined here
-        }
+/* jshint indent: 2 */
+
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('usuario', {
+    idusuario: {
+      type: DataTypes.INTEGER(11),
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    email: {
+      type: DataTypes.STRING(150),
+      allowNull: false,
+      unique: true
+    },
+    senha: {
+      type: DataTypes.STRING(255),
+      allowNull: false
+    },
+    nome: {
+      type: DataTypes.STRING(255),
+      allowNull: false
+    },
+    codigouniversidade: {
+      type: DataTypes.INTEGER(11),
+      allowNull: false
+    },
+    curso_idcurso: {
+      type: DataTypes.INTEGER(11),
+      allowNull: false,
+      primaryKey: true,
+      references: {
+        model: 'curso',
+        key: 'idcurso'
+      }
+    },
+    papel_idpapel: {
+      type: DataTypes.INTEGER(11),
+      allowNull: false,
+      primaryKey: true,
+      references: {
+        model: 'papel',
+        key: 'idpapel'
+      }
     }
-    });
-    return Usuario;
-};
+  }, {
+    tableName: 'usuario'
+  })
+}
