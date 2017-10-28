@@ -16,11 +16,19 @@ Deve ser desenvolvido no branch backend[backend](https://github.com/JosielFaleir
 
 # Para começar o projeto no back-end:
 
-Estes comandos vão clonar, e executar o app.js com o node. (Node já deve estar instalado)
+Estes comandos vão clonar, e executar o app.js com o node. (Node já deve estar instalado, mysql iniciado)
 ```
 git clone https://github.com/JosielFaleiros/utftime.git
 cd utftime
-node app.js
+
+npm i -g sequelize-cli
+
+sequelize db:drop
+sequelize db:create
+sequelize db:migrate
+
+
+npm run nodemon
 ```
 ## Usando:
 * [Node.js](https://nodejs.org/en/about/) 8.5.0 - Node.js® é uma máquina de execução JavaScript do lado do servidor
@@ -38,10 +46,9 @@ Encontra-se no branch frontend agora.
 ```
 git pull origin backend
 
-cd backend
+cd backend // se não estiver na pasta backend
 npm install
 
-sequelize db:create
 sequelize db:migrate
 ```
 -> trabalhar nas funcionalidades do sistema :D
