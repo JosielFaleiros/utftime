@@ -21,7 +21,6 @@ module.exports = (sequelize, DataTypes) => {
       associate: function(models) {
         Documento.belongsTo(Aluno, { foreignKey : 'idAluno' })
         Documento.belongsTo(Item, { foreignKey : 'idItem'})
-        Documento.hasOne(Analise, { foreignKey : 'idDocumento'})
       }
     }
   });
