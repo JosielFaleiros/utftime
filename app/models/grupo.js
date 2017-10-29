@@ -5,12 +5,13 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     },
     nome: {
       type: DataTypes.STRING(50)
     }
   }, {
+    tableName: 'Grupo',
     classMethods: {
       associate: function(models) {
         // associations can be defined here

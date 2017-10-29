@@ -5,16 +5,17 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     },
     nome: {
       type: DataTypes.STRING(50)
     },
     grupoId: {
       allowNull: false,
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     }
   }, {
+    tableName: 'Item',
     classMethods: {
       associate: function(models) {
         Item.belongsTo(Grupo, { foreignKey : 'idGrupo'})

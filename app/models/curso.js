@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(30)
     }
   }, {
+    tableName: 'Curso',
     classMethods: {
       associate: function(models) {
         

@@ -12,13 +12,14 @@ module.exports = (sequelize, DataTypes) => {
     },
     documentoId: {
       allowNull: false,
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     },
     professorId: {
       allowNull: false,
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     },
   }, {
+    tableName: 'Analise',
     classMethods: {
       associate: function(models) {
         Analise.belongsTo(Professor, { foreignKey : 'id'})

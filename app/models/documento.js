@@ -18,13 +18,14 @@ module.exports = (sequelize, DataTypes) => {
     },
     alunoId: {
       allowNull: false,
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     },
     itemId: {
       allowNull: false,
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     }
   }, {
+    tableName: 'Documento',
     classMethods: {
       associate: function(models) {
         Documento.belongsTo(Aluno, { foreignKey : 'id' })

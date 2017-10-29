@@ -9,13 +9,14 @@ module.exports = (sequelize, DataTypes) => {
     },
     siap: {
       allowNull: false,
-      type: DataType.STRING(30)
+      type: DataTypes.STRING(30)
     },
     pessoaId: {
       allowNull: false,
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     }
   }, {
+    tableName: 'Professor',
     classMethods: {
       associate: function(models) {
         Professor.belongsTo(Pessoa, { foreignKey : 'id'})
