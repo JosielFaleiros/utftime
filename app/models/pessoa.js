@@ -22,8 +22,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     classMethods: {
       associate: function(models) {
-        Pessoa.hasOne(Aluno, { foreignKey : 'idAluno' })
-        Pessoa.hasOne(Professor, { foreignKey : 'idProfessor' })
+
       }
     }
   });
