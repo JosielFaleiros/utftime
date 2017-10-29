@@ -19,7 +19,6 @@ module.exports = function(sequelize, DataTypes) {
     grupo_idgrupo: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true,
       references: {
         model: 'grupo',
         key: 'idgrupo'

@@ -28,7 +28,6 @@ module.exports = function(sequelize, DataTypes) {
     curso_idcurso: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true,
       references: {
         model: 'curso',
         key: 'idcurso'
@@ -37,7 +36,6 @@ module.exports = function(sequelize, DataTypes) {
     papel_idpapel: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true,
       defaultValue: '2',
       references: {
         model: 'papel',
