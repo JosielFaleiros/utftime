@@ -9,15 +9,15 @@ module.exports = (sequelize, DataTypes) => {
     },
     nome: {
       allowNull: false,
-      type: DataTypes.String(50)
+      type: DataTypes.STRING(50)
     },
     email: {
       allowNull: false,
-      type: DataTypes.String(50)
+      type: DataTypes.STRING(50)
     },
     senha: {
       allowNull: false,
-      type: DataTypes.String(50)
+      type: DataTypes.STRING(50)
     }
   }, {
     classMethods: {
