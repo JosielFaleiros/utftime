@@ -27,8 +27,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     classMethods: {
       associate: function(models) {
-        Documento.belongsTo(Aluno, { foreignKey : 'idAluno' })
-        Documento.belongsTo(Item, { foreignKey : 'idItem'})
+        Documento.belongsTo(Aluno, { foreignKey : 'id' })
+        Documento.belongsTo(Item, { foreignKey : 'id'})
       }
     }
   });

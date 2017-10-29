@@ -21,8 +21,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     classMethods: {
       associate: function(models) {
-        Analise.belongsTo(Professor, { foreignKey : 'idProfessor'})
-        Analise.belongsTo(Documento, { foreignKey : 'idDocumento'})
+        Analise.belongsTo(Professor, { foreignKey : 'id'})
+        Analise.belongsTo(Documento, { foreignKey : 'id'})
       }
     }
   });
