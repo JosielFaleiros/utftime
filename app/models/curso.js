@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     classMethods: {
       associate: function(models) {
-        Curso.hasOne(Aluno, {foreignKey : 'idAluno'})
+        
       }
     }
   });
