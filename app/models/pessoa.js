@@ -22,7 +22,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     classMethods: {
       associate: function(models) {
-        // associations can be defined here
+        Pessoa.hasOne(Aluno, { foreignKey : 'idAluno' })
+        Pessoa.hasOne(Professor, { foreignKey : 'idProfessor' })
       }
     }
   });
