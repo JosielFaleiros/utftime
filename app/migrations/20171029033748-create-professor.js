@@ -6,11 +6,11 @@ module.exports = {
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
-        type: DataTypes.INTEGER
+        type: Sequelize.INTEGER
       },
       siap: {
         allowNull: false,
-        type: DataType.STRING(30)
+        type: Sequelize.STRING(30)
       },
       createdAt: {
         allowNull: false,

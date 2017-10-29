@@ -6,19 +6,27 @@ module.exports = {
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
-        type: DataTypes.INTEGER
+        type: Sequelize.INTEGER
       },
       nome: {
         allowNull: false,
-        type: DataTypes.STRING(50)
+        type: Sequelize.STRING(50)
       },
       email: {
         allowNull: false,
-        type: DataTypes.STRING(50)
+        type: Sequelize.STRING(50)
       },
       senha: {
         allowNull: false,
-        type: DataTypes.STRING(50)
+        type: Sequelize.STRING(50)
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
       }
     });
   },

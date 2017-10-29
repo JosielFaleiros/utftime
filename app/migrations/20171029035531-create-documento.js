@@ -6,16 +6,16 @@ module.exports = {
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
-        type: DataTypes.INTEGER
+        type: Sequelize.INTEGER
       },
       dataEnvio: {
-        type: DataTypes.DATEONLY
+        type: Sequelize.DATEONLY
       },
       pontuacao: {
-        type: DataTypes.INTEGER
+        type: Sequelize.INTEGER
       },
       url: {
-        type: DataTypes.STRING(50)
+        type: Sequelize.STRING(50)
       },
       createdAt: {
         allowNull: false,
