@@ -5,6 +5,7 @@ module.exports = function(sequelize, DataTypes) {
     iddocumento: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
+      autoIncrement: true,
       primaryKey: true
     },
     dataenvio: {
@@ -37,6 +38,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
+      defaultValue: '1',
       references: {
         model: 'status',
         key: 'idstatus'
