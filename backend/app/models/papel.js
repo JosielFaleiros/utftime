@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('papel', {
+  return sequelize.define('Papel', {
     idpapel: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
@@ -13,6 +13,7 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     tableName: 'papel',
+    underscored: false,
     timestamps: false
   })
 }

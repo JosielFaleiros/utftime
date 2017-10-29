@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('departamento', {
+  return sequelize.define('Departamento', {
     iddepartamento: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
@@ -13,6 +13,7 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     tableName: 'departamento',
+    underscored: false,
     timestamps: false
   })
 }
