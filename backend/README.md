@@ -26,7 +26,7 @@ npm i -g sequelize-cli
 sequelize db:drop
 sequelize db:create
 sequelize db:migrate
-
+sequelize db:seed:all
 
 npm run nodemon
 ```
