@@ -21,6 +21,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   }, {
-    tableName: 'curso'
+    tableName: 'curso',
+    timestamps: false
   })
 }
