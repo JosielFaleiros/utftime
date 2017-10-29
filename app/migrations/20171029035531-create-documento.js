@@ -2,14 +2,20 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Documento', {
-      id: {
+      idDocumento: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        autoIncrement: true,
+        type: DataTypes.INTEGER
       },
-      firstName: {
-        type: Sequelize.STRING
+      dataEnvio: {
+        type: DataTypes.DATEONLY
+      },
+      pontuacao: {
+        type: DataTypes.INTEGER
+      },
+      url: {
+        type: DataTypes.STRING(50)
       },
       createdAt: {
         allowNull: false,

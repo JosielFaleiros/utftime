@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true,
       type: DataTypes.INTEGER
-    },
+    }
   }, {
     classMethods: {
       associate: function(models) {
