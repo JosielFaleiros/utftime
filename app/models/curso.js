@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   let Curso = sequelize.define('Curso', {
-    idCurso: {
+    id: {
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,

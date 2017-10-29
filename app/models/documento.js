@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Documento = sequelize.define('Documento', {
-    idDocumento: {
+    id: {
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
@@ -15,6 +15,14 @@ module.exports = (sequelize, DataTypes) => {
     },
     url: {
       type: DataTypes.STRING(50)
+    },
+    alunoId: {
+      allowNull: false,
+      type: Sequelize.INTEGER
+    },
+    itemId: {
+      allowNull: false,
+      type: Sequelize.INTEGER
     }
   }, {
     classMethods: {

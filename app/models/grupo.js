@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   let Grupo = sequelize.define('Grupo', {
-    idGrupo: {
+    id: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,

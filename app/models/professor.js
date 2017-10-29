@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Professor = sequelize.define('Professor', {
-    idProfessor: {
+    id: {
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
@@ -10,6 +10,10 @@ module.exports = (sequelize, DataTypes) => {
     siap: {
       allowNull: false,
       type: DataType.STRING(30)
+    },
+    pessoaId: {
+      allowNull: false,
+      type: Sequelize.INTEGER
     }
   }, {
     classMethods: {

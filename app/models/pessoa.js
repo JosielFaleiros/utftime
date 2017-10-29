@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   let Pessoa = sequelize.define('Pessoa', {
-    idPessoa: {
+    id: {
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,

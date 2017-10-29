@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Analise = sequelize.define('Analise', {
-    idAnalise: {
+    id: {
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
@@ -9,7 +9,15 @@ module.exports = (sequelize, DataTypes) => {
     },
     resultado: {
       type: DataTypes.STRING(40)
-    }
+    },
+    documentoId: {
+      allowNull: false,
+      type: Sequelize.INTEGER
+    },
+    professorId: {
+      allowNull: false,
+      type: Sequelize.INTEGER
+    },
   }, {
     classMethods: {
       associate: function(models) {
