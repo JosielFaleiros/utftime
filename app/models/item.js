@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var Item = sequelize.define('Item', {
+  let Item = sequelize.define('Item', {
     id: {
       allowNull: false,
       autoIncrement: true,
@@ -15,12 +15,12 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER
     }
   }, {
-    tableName: 'Item',
-    classMethods: {
-      associate: function(models) {
-        Item.belongsTo(Grupo, { foreignKey : 'idGrupo'})
-      }
-    }
+    tableName: 'Item'
   });
+
+  Item.associate = function(models) {
+    Item.belongsTo(models.Grupo, { foreignKey : 'id'})
+  }
+
   return Item;
 };

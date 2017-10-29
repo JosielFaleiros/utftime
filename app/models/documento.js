@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var Documento = sequelize.define('Documento', {
+  let Documento = sequelize.define('Documento', {
     id: {
       allowNull: false,
       primaryKey: true,
@@ -25,13 +25,13 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER
     }
   }, {
-    tableName: 'Documento',
-    classMethods: {
-      associate: function(models) {
-        Documento.belongsTo(Aluno, { foreignKey : 'id' })
-        Documento.belongsTo(Item, { foreignKey : 'id'})
-      }
-    }
+    tableName: 'Documento'
   });
+
+  Documento.associate = function(models) {
+    Documento.belongsTo(models.Aluno, { foreignKey : 'id' })
+    Documento.belongsTo(models.Item, { foreignKey : 'id'})
+  }
+
   return Documento;
 };

@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var Aluno = sequelize.define('Aluno', {
+  let Aluno = sequelize.define('Aluno', {
     id: {
       allowNull: false,
       primaryKey: true,
@@ -16,13 +16,13 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER
     }
   }, {
-    tableName: 'Aluno',
-    classMethods: {
-      associate: function(models) {
-        Aluno.belongsTo(Pessoa, { foreignKey : 'id'})
-        Aluno.belongsTo(Curso, { foreignKey : 'id'})
-      }
-    }
+    tableName: 'Aluno'
   });
+
+  Aluno.associate = function(models) {
+    Aluno.belongsTo(models.Pessoa, { foreignKey : 'id'})
+    Aluno.belongsTo(models.Curso, { foreignKey : 'id'})
+  }  
+  
   return Aluno;
 };

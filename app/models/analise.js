@@ -19,13 +19,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER
     },
   }, {
-    tableName: 'Analise',
-    classMethods: {
-      associate: function(models) {
-        Analise.belongsTo(Professor, { foreignKey : 'id'})
-        Analise.belongsTo(Documento, { foreignKey : 'id'})
-      }
-    }
+    tableName: 'Analise'
   });
+
+  Analise.associate = function(models) {
+    Analise.belongsTo(models.Professor, { foreignKey : 'id'})
+    Analise.belongsTo(models.Documento, { foreignKey : 'id'})
+  }
+
+
   return Analise;
 };
