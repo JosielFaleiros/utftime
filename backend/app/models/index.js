@@ -30,6 +30,18 @@ Object.keys(db).forEach(modelName => {
   }
 })
 
+db.Departamento.hasMany(db.Curso, {as: 'cursos', foreignKey: 'departamento_iddepartamento'})
+db.Curso.belongsTo(db.Departamento, {foreignKey: 'departamento_iddepartamento'})
+
+db.Grupo.hasMany(db.Documento, {as: 'documentos', foreignKey: 'grupo_idgrupo'})
+db.Documento.belongsTo(db.Grupo, {foreignKey: 'grupo_idgrupo'})
+
+db.Usuario.hasMany(db.Documento, {as: 'documentos', foreignKey: 'usuario_idusuario'})
+db.Documento.belongsTo(db.Usuario, {foreignKey: 'usuario_idusuario'})
+
+db.Curso.hasMany(db.Usuario, {as: 'alunos', foreignKey: 'curso_idcurso'})
+db.Usuario.belongsTo(db.Curso, {foreignKey: 'curso_idcurso'})
+
 db.sequelize = sequelize
 db.Sequelize = Sequelize
 sequelize.sync({force: false})
