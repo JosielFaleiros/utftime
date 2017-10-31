@@ -60,16 +60,18 @@ function findAll(req, res, next) {}
 function find(req, res, next) {}
 
 function create(req, res, next) {
-  console.log(req.body);
-  if (!req.body.nome || !req.body.email || !req.body.senha ) {
+  /*
+  [observação]
+  no versão atual, não será implelemtado uma interface de cadastro de Professor de A.C,
+  visto que o cadastro deste deveria ser por um administrador do sistema, e este não possui.
+  */
+  if (req.body.papel_idpapel || !req.body.curso_idcurso ) {
     return res.status(200)
     .send({ mensagem: 'Dados insuficientes ou usuário com e-mail já existe.' })
   } else {
     bcrypt.hash(req.body.senha, 12).then( function(hash) {
       let usuario = Object.assign({}, req.body, {})
       usuario.senha = hash
-      usuario.papel = 'aluno'
-      // console.log(usuario)
       models.Usuario.create(
         usuario
       ).then((result) => {
@@ -81,7 +83,6 @@ function create(req, res, next) {
         // res.set('x-access-token', token)
         //TODO SECURE TOKEN res.cookie('token', token, { httpOnly: true, secure: true })
         res.cookie('token', token)
-        console.log(token)
         return res.status(201).send({
           redirectURL: '/documentos'
         })
