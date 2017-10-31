@@ -27,7 +27,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     curso_idcurso: {
       type: DataTypes.INTEGER(11),
-      allowNull: false,
+      allowNull: true,
       references: {
         model: 'curso',
         key: 'idcurso'
