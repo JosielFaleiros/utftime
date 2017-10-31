@@ -2,11 +2,10 @@ const jwt = require('jsonwebtoken')
 const config = require('../../config/config')['development']
 
 const middleware = {
-  verifyToken: (req, res) => {
-    let token = req.cookies['token']
+  verifyToken: (token, req, next) => {
     return jwt.verify(token, config.secret, (err, decoded) => {
       if (err) {
-        req.token = {logged: false}
+        req.token = {idusuario:-1,logged: false}
         return ANONYMOUS_TOKEN
       } else {
         req.token = decoded
@@ -16,7 +15,7 @@ const middleware = {
     })
   },
   newAnonymousToken: () => {
-    return jwt.sign({ id: '-1', logged: false }, config.secret, {
+    return jwt.sign({ idusuario: '-1', logged: false }, config.secret, {
       algorithm: 'HS256',
       expiresIn: '30d'
     })
@@ -26,7 +25,7 @@ const middleware = {
 let ANONYMOUS_TOKEN = middleware.newAnonymousToken()
 
 module.exports = (req, res, next) => {
-  let token = req.cookies ? middleware.verifyToken(req, res) : ANONYMOUS_TOKEN
+  let token = req.cookies ? middleware.verifyToken(req.cookies['token'], req, next) : middleware.verifyToken(ANONYMOUS_TOKEN, req, next)
   res.cookie('token', token)
   next()
 }
