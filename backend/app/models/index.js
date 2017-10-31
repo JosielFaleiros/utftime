@@ -39,7 +39,8 @@ db.Documento.belongsTo(db.Grupo, {foreignKey: 'grupo_idgrupo'})
 db.Usuario.hasMany(db.Documento, {as: 'documentos', foreignKey: 'usuario_idusuario'})
 db.Documento.belongsTo(db.Usuario, {foreignKey: 'usuario_idusuario'})
 
-db.Documento.belongsTo(db.Status)
+db.Documento.belongsTo(db.Status, {foreignKey: 'status_idstatus'})
+db.Usuario.belongsTo(db.Papel, {foreignKey: 'papel_idpapel'})
 
 db.Curso.hasMany(db.Usuario, {as: 'alunos', foreignKey: 'curso_idcurso'})
 db.Usuario.belongsTo(db.Curso, {foreignKey: 'curso_idcurso'})
