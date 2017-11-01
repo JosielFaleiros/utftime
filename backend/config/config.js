@@ -6,6 +6,7 @@ module.exports = {
     "host": "127.0.0.1",
     "dialect": "mysql",
     "logging": console.log,
+    "files_path": "./public/",
     "secret": "flCslAFSSSSKkalsdkSLDFHHESDN23423false2342342lkdnalfNFKSLvD8eDdgc"
   },
   "test": {
@@ -15,6 +16,7 @@ module.exports = {
     "host": "127.0.0.1",
     "dialect": "mysql",
     "logging": console.log,
+    "files_path": "./public/",
     "secret": "flCslAFSSSSKkalsdkSLDFHHESDN23423false2342342lkdnalfNFKSLvD8eDdgc"
   },
   "production": {
@@ -24,6 +26,7 @@ module.exports = {
     "host": "127.0.0.1",
     "dialect": "mysql",
     "logging": console.log,
+    "files_path": "./public/",
     "secret": process.env.JWT_SECRET
   }
 }

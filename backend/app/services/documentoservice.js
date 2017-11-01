@@ -1,5 +1,10 @@
 const path = require('path')
 const models = require('../models')
+const basename  = path.basename(__filename)
+const env       = process.env.NODE_ENV || 'development'
+const config    = require(__dirname + '/../../config/config.js')[env]
+
+const base64 = require('file-base64')
 
 async function findAll(req, res, next) {
   let user = await models.Usuario.find({where: {idusuario: req.token.idusuario}, include: [models.Papel]})
@@ -37,10 +42,38 @@ async function findAll(req, res, next) {
 
 function find(req, res, next) {}
 
-function create(req, res, next) {
-  // TODO: create the service for this
-  //other result: res.status(201).send(' { "iddocumento": 0, "url": "string", "grupo_idgrupo": 0, "usuario_idusuario": 0, "status_idstatus": 0, "pontuacao": 0 }')
-  res.status(200).send(' { mensagem: "Não foi possível criar o documento." } ')
+async function create(req, res, next) {
+  try {
+    /*START SENDING FILE TO DISK*/
+    let matches_file = req.body.arquivo.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/)
+    if (matches_file.length !== 3) {
+      return new Error('Invalid input string');
+    }
+    let extenssion_file = matches_file[1].match(/\/(.*?)$/) // this is to take any extenssion format
+    let crypto = require("crypto")
+    let newfilename = crypto.randomBytes(8).toString('hex')
+    let image_name_path = config.files_path+newfilename+'.'+extenssion_file[1]
+    let url = newfilename+'.'+extenssion_file[1]
+    await base64.decode(matches_file[2], image_name_path, function(err, output) {
+      console.log(output)
+      if (err) {
+        throw new Error()
+      }
+    })
+    /*END SENDING FILE TO DISK*/
+
+
+    let newdoc = await models.Documento.create({
+      nomearquivo: req.body.nomearquivo,
+      grupo_idgrupo: req.body.grupo_idgrupo,
+      usuario_idusuario: req.token.idusuario,
+      url: url
+    })
+    res.send(await models.Documento.find({where: {iddocumento: newdoc.iddocumento}}))
+
+  } catch (e) {
+    res.status(200).send(' { mensagem: "Não foi possível criar o documento." } ')
+  }
 }
 
 function update(req, res, next) {

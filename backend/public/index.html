@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Teste</title>
+  </head>
+  <body>
+    <input type="file" onchange="previewFile()"><br>
+    <img src="" height="600" alt="Prévia da imagem...">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      function previewFile() {
+        var preview = document.querySelector('img');
+        var file    = document.querySelector('input[type=file]').files[0];
+        var reader  = new FileReader();
+
+        reader.onloadend = function () {
+          preview.src = reader.result;
+          console.log('[loaded]');
+          $.ajax({
+            type: "POST",
+            url: "http://localhost:4321/api/documento",
+            data: {arquivo: reader.result, nomearquivo: "arquivo.algo", grupo_idgrupo: '2'},
+            success: function() {
+              alert('sucess enviado')
+            }
+          });
+        }
+
+        if (file) {
+          reader.readAsDataURL(file);
+        } else {
+          preview.src = "";
+        }
+      }
+    </script>
+  </body>
+</html>
