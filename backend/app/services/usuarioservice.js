@@ -16,7 +16,7 @@ function doLogin(req, res, next) {
         bcrypt.compare(req.body.senha, usuario.senha, function(err, resulthash) {/*resulthash IS TRUE OF FALSE ;)*/
           console.log('in compar true')
           if (resulthash) {
-            let token = jwt.sign({ idusuario: usuario.idUsuario, s: '/documentos', logged: true }, config.secret, {
+            let token = jwt.sign({ idusuario: usuario.idusuario, s: '/documentos', logged: true }, config.secret, {
               algorithm: 'HS256',
               expiresIn: '30d'
             })
