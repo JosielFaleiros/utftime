@@ -8,8 +8,8 @@ module.exports = function(sequelize, DataTypes) {
       autoIncrement: true,
       primaryKey: true
     },
-    dataenvio: {
-      type: DataTypes.DATE,
+    url: {
+      type: DataTypes.STRING(45),
       allowNull: false
     },
     nomearquivo: {
@@ -53,6 +53,6 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     tableName: 'documento',
-    underscored: false
+    underscored: true
   })
 }

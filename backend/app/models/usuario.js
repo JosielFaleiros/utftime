@@ -44,6 +44,6 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     tableName: 'usuario',
-    underscored: false,
+    underscored: true
   })
 }
