@@ -59,7 +59,7 @@ function recoverPassword(req, res, next) {
 async function confirmAccount(req, res, next) {
   let usuario = await models.Usuario.find({where: {hashconfconta: req.params.hash}})
   if (usuario) {
-    usuario.ativo = '1'
+    usuario.ativo = true
     usuario.hashconfconta = null
     usuario.save()
     res.status(200).send('Sua conta foi confirmada com sucesso')
@@ -108,7 +108,7 @@ function create(req, res, next) {
         usuario
       ).then((result) => {
         // console.log('user created')
-        let token = jwt.sign({ id: result.idUsuario, s: '/documentos' }, config.secret, {
+        let token = jwt.sign({ idusuario: '-1', s: '/login', logged: false }, config.secret, {
           algorithm: 'HS256',
           expiresIn: '30d'
         })
@@ -119,7 +119,7 @@ function create(req, res, next) {
         mailservice.sendMail('UTFTIME - Conta', 'Para confirmar sua conta, click no link: -> <a href="http://localhost:4321/api/usuario/'+hashconfconta+'">Link para confirmação</a>' , result.email)
 
         return res.status(201).send({
-          redirectURL: '/documentos'
+          mensagem: 'Conta criada com sucesso, agora clique no link enviado para o seu e-mail para concluir o cadastro.'
         })
       }).catch(function (err) {
         // console.log(err)
