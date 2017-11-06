@@ -11,7 +11,7 @@ function doLogin(req, res, next) {
     return res.status(200).send({ mensagem: 'Email ou senha incorretos.' })
   } else {
     models.Usuario.find({
-      where: {email: req.body.email}
+      where: {email: req.body.email, ativo: true}
     }).then((usuario) => {
       if (usuario) {
         bcrypt.compare(req.body.senha, usuario.senha, function(err, resulthash) {/*resulthash IS TRUE OF FALSE ;)*/
