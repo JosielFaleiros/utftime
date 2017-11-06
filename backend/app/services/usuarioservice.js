@@ -56,6 +56,18 @@ function recoverPassword(req, res, next) {
   res.status(201).send({mensagem: 'Link de recuperação enviado para o e-mail.'})
 }
 
+async function confirmAccount(req, res, next) {
+  let usuario = await models.Usuario.find({where: {hashconfconta: req.params.hash}})
+  if (usuario) {
+    usuario.ativo = '1'
+    usuario.hashconfconta = null
+    usuario.save()
+    res.status(200).send('Sua conta foi confirmada com sucesso')
+  } else {
+    res.redirect('/login')
+  }
+}
+
 function findAll(req, res, next) {}
 
 function find(req, res, next) {}
@@ -126,4 +138,4 @@ function update(req, res, next) {
 
 function destroy(req, res, next) {}
 
-module.exports = {doLogin, doLogout, recoverPassword, findAll, find, create, update, destroy}
+module.exports = {doLogin, doLogout, recoverPassword, confirmAccount, findAll, find, create, update, destroy}

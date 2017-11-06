@@ -19,8 +19,10 @@ router.get('/logout', usuarioservice.doLogout)
 router.post('/api/recuperar', usuarioservice.recoverPassword)
 
 /*
-This is to create a new user
+This is to create a new user and confirm account
 */
+router.get('/api/usuario/:hash', usuarioservice.confirmAccount)
+
 router.post('/api/usuario', usuarioservice.create)
 
 router.put('/api/usuario', usuarioservice.update)
