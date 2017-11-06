@@ -8,6 +8,11 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true,
       autoIncrement: true
     },
+    ativo: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    },
     email: {
       type: DataTypes.STRING(150),
       allowNull: false,
@@ -16,6 +21,14 @@ module.exports = function(sequelize, DataTypes) {
     senha: {
       type: DataTypes.STRING(255),
       allowNull: false
+    },
+    hashconfconta: {
+      type: DataTypes.STRING(100),
+      allowNull: true
+    },
+    hashrecsenha: {
+      type: DataTypes.STRING(100),
+      allowNull: true
     },
     nome: {
       type: DataTypes.STRING(255),

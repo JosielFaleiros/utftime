@@ -1,4 +1,5 @@
 const models = require('../models')
+const mailservice = require('../services/mailservice')
 const bcrypt = require('bcrypt')
 const config = require('../../config/config')['development']
 const jwt = require('jsonwebtoken')
@@ -65,12 +66,31 @@ function create(req, res, next) {
   no versão atual, não será implelemtado uma interface de cadastro de Professor de A.C,
   visto que o cadastro deste deveria ser por um administrador do sistema, e este não possui.
   */
-  if (req.body.papel_idpapel || !req.body.curso_idcurso ) {
+  // TODO: COLOCAR TUDO DENTRO DE UM TRY catch
+  if (!req.body.email || !req.body.curso_idcurso ) {
     return res.status(200)
     .send({ mensagem: 'Dados insuficientes ou usuário com e-mail já existe.' })
   } else {
+    let crypto = require("crypto")
+    let hashconfconta = crypto.randomBytes(45).toString('hex')// este hash é para confirmação da conta.
+
+    //garantindo que atributos não serão alterados
+    delete req.body.ativo
+    delete req.body.hashconfconta
+    delete req.body.hashrecsenha
+    delete req.body.papel_idpapel
+
+    let emailpieces = req.body.email.split('@')
+    //verificando se o domínio é dos alunos da UTFPR
+    if (emailpieces.length = 2 && emailpieces[1] != 'alunos.utfpr.edu.br') {
+      return res.status(200)
+      .send({ mensagem: 'Dados insuficientes ou usuário com e-mail já existe.' })
+    }
+
+    //criando um hash da senha para salvar no banco.
     bcrypt.hash(req.body.senha, 12).then( function(hash) {
       let usuario = Object.assign({}, req.body, {})
+      usuario.hashconfconta = hashconfconta
       usuario.senha = hash
       models.Usuario.create(
         usuario
@@ -83,6 +103,9 @@ function create(req, res, next) {
         // res.set('x-access-token', token)
         //TODO SECURE TOKEN res.cookie('token', token, { httpOnly: true, secure: true })
         res.cookie('token', token)
+
+        mailservice.sendMail('UTFTIME - Conta', 'Para confirmar sua conta, click no link: -> <a href="http://localhost:4321/api/usuario/'+hashconfconta+'">Link para confirmação</a>' , result.email)
+
         return res.status(201).send({
           redirectURL: '/documentos'
         })
