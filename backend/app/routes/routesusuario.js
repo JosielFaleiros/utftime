@@ -21,6 +21,14 @@ router.post('/api/recuperar', usuarioservice.recoverPassword)
 /*
 This is to create a new user and confirm account
 */
+router.get('/api/usuario/recuperacao/:hash', usuarioservice.inputNewPassword)
+
+
+/*
+este endpoint com post é para armazenar a nova senha
+*/
+router.post('/api/usuario/recuperacao', usuarioservice.storeNewPassword)
+
 router.get('/api/usuario/:hash', usuarioservice.confirmAccount)
 
 router.post('/api/usuario', usuarioservice.create)

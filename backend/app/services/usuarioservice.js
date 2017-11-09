@@ -50,10 +50,59 @@ function doLogout(req, res, next) {
   return res.status(302).redirect('/login')
 }
 
-function recoverPassword(req, res, next) {
-  // TODO: enviar um link para preencher nova senha por e-mail.
+
+/*
+Mostra a tela para entrada de nova senha
+*/
+async function inputNewPassword(req, res, next) {
+  try {
+    var decoded = jwt.verify(req.params.hash, config.secret)
+    res.cookie('token', req.params.hash)
+    let usuario = await models.Usuario.find({where: {hashrecsenha: req.params.hash, ativo: true}})
+    if (!usuario) throw new Error('Not found')
+    res.status(201).send('TODO: Mostrar uma tela com duas entradas de senha aqui')
+  } catch (e) {
+    res.status(200).send({mensagem: 'Usuário não encontrado.'})
+  }
+}
+
+/*
+recebe as novas senhas da tela de entrada de novas senhas para recuperação da conta
+*/
+async function storeNewPassword(req, res, next) {
+  try {
+    var hash = bcrypt.hashSync(req.body.senha, 12)
+    let usuario = await models.Usuario.find({ where: {hashrecsenha: req.cookies['token'], ativo: true}})
+    usuario.hashrecsenha = null
+    usuario.senha = hash
+    usuario.save()
+    req.body.email = usuario.email
+
+    // TODO: enviar um email dizendo que a senha foi alterada?
+    res.status(201).send({mensagem: 'Senha alterada com sucesso, pode fazer login agora com a nova senha.'})
+  } catch (e) {
+    console.log(e);
+    res.status(200).send({mensagem: 'Usuário não encontrado.'})
+  }
+}
+
+async function recoverPassword(req, res, next) {
+  try {
+    let usuario = await models.Usuario.find({where: {email: req.body.email, ativo: true}})
+    if (!usuario) throw new Error('Usuário não encontrado')
+    let token = jwt.sign({ idusuario: usuario.idusuario, logged: false}, config.secret, {
+      algorithm: 'HS256',
+      expiresIn: '7d'
+    })
+    if (!token) throw new Error('token não pode ser gerado')
+    usuario.hashrecsenha = token
+    usuario.save()
+    mailservice.sendMail('UTFTIME - Conta', 'Para recuperar sua senha, click no link: -> <a href="http://localhost:4321/api/usuario/recuperacao/'+token+'">Link para recuperação</a>' , usuario.email)
+    res.status(201).send({mensagem: 'Link de recuperação enviado para o e-mail.'})
+  } catch (e) {
+    res.status(200).send({mensagem: 'Usuário não encontrado.'})
+  }
   // TODO: create new layout to fill new password
-  res.status(201).send({mensagem: 'Link de recuperação enviado para o e-mail.'})
 }
 
 async function confirmAccount(req, res, next) {
@@ -138,4 +187,4 @@ function update(req, res, next) {
 
 function destroy(req, res, next) {}
 
-module.exports = {doLogin, doLogout, recoverPassword, confirmAccount, findAll, find, create, update, destroy}
+module.exports = {doLogin, doLogout, inputNewPassword, storeNewPassword, recoverPassword, confirmAccount, findAll, find, create, update, destroy}

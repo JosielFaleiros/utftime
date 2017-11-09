@@ -27,7 +27,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     hashrecsenha: {
-      type: DataTypes.STRING(100),
+      type: DataTypes.STRING(200),
       allowNull: true
     },
     nome: {
