@@ -10,6 +10,7 @@ const routesusuario = require('./app/routes/routesusuario')
 const routesdocumento = require('./app/routes/routesdocumento')
 
 const authenticmiddle = require('./app/services/middleware')
+const abilities = require('./app/services/abilities')
 
 const app = express()
 
@@ -26,6 +27,7 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.use(authenticmiddle)
+app.use(abilities)
 
 app.use('/', index)
 app.use('/', routesusuario)
