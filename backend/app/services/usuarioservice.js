@@ -5,40 +5,47 @@ const config = require('../../config/config')['development']
 const jwt = require('jsonwebtoken')
 
 function doLogin(req, res, next) {
-  // TODO: try  to use captcha on login
-  console.log(req.body)
-  if (!req.body.email || !req.body.senha ) {
+  try {
+    // TODO: try  to use captcha on login
+    /*Verificando aqui se o cliente pode realizar login, senão pode, uma excessão é lançada*/
+    req.ability.throwUnlessCan('doLogin', models.Usuario.name)
+
+    console.log(req.body)
+    if (!req.body.email || !req.body.senha ) {
+      return res.status(200).send({ mensagem: 'Email ou senha incorretos.' })
+    } else {
+      models.Usuario.find({
+        where: {email: req.body.email, ativo: true}
+      }).then((usuario) => {
+        if (usuario) {
+          bcrypt.compare(req.body.senha, usuario.senha, function(err, resulthash) {/*resulthash IS TRUE OF FALSE ;)*/
+            console.log('in compar true')
+            if (resulthash) {
+              let token = jwt.sign({ idusuario: usuario.idusuario, usuariopapel: usuario.papel_idpapel, s: '/documentos', logged: true }, config.secret, {
+                algorithm: 'HS256',
+                expiresIn: '30d'
+              })
+              // return res.status(200).send({ auth: true, token: token })
+              //TODO SECURE TOKEN res.cookie('token', token, { httpOnly: true, secure: true })
+              res.cookie('token', token)
+              console.log('/login set new token:')
+              console.log(token)
+              return res.status(302).send({
+                redirecturl: '/documentos'
+              })
+            } else {
+              //MAYBE RETORNAR ESTE JSON return res.status(401)
+              // .send({ auth: false, token: null })
+              return res.status(200).send({ mensagem: 'Email ou senha incorretos.' })
+            }
+          })
+        } else {
+          return res.status(200).send({ mensagem: 'Email ou senha incorretos.' })
+        }
+      })
+    }
+  } catch (e) {
     return res.status(200).send({ mensagem: 'Email ou senha incorretos.' })
-  } else {
-    models.Usuario.find({
-      where: {email: req.body.email, ativo: true}
-    }).then((usuario) => {
-      if (usuario) {
-        bcrypt.compare(req.body.senha, usuario.senha, function(err, resulthash) {/*resulthash IS TRUE OF FALSE ;)*/
-          console.log('in compar true')
-          if (resulthash) {
-            let token = jwt.sign({ idusuario: usuario.idusuario, usuariopapel: usuario.papel_idpapel, s: '/documentos', logged: true }, config.secret, {
-              algorithm: 'HS256',
-              expiresIn: '30d'
-            })
-            // return res.status(200).send({ auth: true, token: token })
-            //TODO SECURE TOKEN res.cookie('token', token, { httpOnly: true, secure: true })
-            res.cookie('token', token)
-            console.log('/login set new token:')
-            console.log(token)
-            return res.status(302).send({
-              redirecturl: '/documentos'
-            })
-          } else {
-            //MAYBE RETORNAR ESTE JSON return res.status(401)
-            // .send({ auth: false, token: null })
-            return res.status(200).send({ mensagem: 'Email ou senha incorretos.' })
-          }
-        })
-      } else {
-        return res.status(200).send({ mensagem: 'Email ou senha incorretos.' })
-      }
-    })
   }
 }
 
