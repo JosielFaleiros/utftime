@@ -7,11 +7,13 @@ const config    = require(__dirname + '/../../config/config.js')[env]
 const base64 = require('file-base64')
 
 async function findAll(req, res, next) {
-  let user = await models.Usuario.find({where: {idusuario: req.token.idusuario}, include: [models.Papel]})
-  let papel = 0
-  if(user) papel = user.Papel.idpapel
-  switch (papel) {
-    case 1:/*CASO SEJA PROFESSOR*/
+  try {
+    throwUnlessCan('findAll', models.Documento.name)
+    let user = await models.Usuario.find({where: {idusuario: req.token.idusuario}, include: [models.Papel]})
+    let papel = 0
+    if(user) papel = user.Papel.idpapel
+    switch (papel) {
+      case 1:/*CASO SEJA PROFESSOR*/
       res.status(200).send({
         documentos: await models.Documento.findAll({
           include: [{model: models.Grupo}, {model: models.Usuario, attributes: ['idusuario', 'nome']}, {model: models.Status}]
@@ -20,7 +22,7 @@ async function findAll(req, res, next) {
         status: await models.Status.findAll()
       })
       break;
-    case 2:/*CASO SEJA ALUNO*/
+      case 2:/*CASO SEJA ALUNO*/
       res.status(200).send({
         documentos: await models.Documento.findAll({
           where: {usuario_idusuario: req.token.idusuario},
@@ -30,13 +32,16 @@ async function findAll(req, res, next) {
         status: await models.Status.findAll()
       })
       break;
-    default:
+      default:
       res.status(200).send({
         documentos: [],
         grupos: await models.Grupo.findAll(),
         status: await models.Status.findAll()
       })
       break;
+    }
+  } catch (e) {
+    res.status(200).send({mensagem: "Algum erro ocorreu"})
   }
 }
 
@@ -44,6 +49,7 @@ function find(req, res, next) {}
 
 async function create(req, res, next) {
   try {
+    throwUnlessCan('create', models.Documento.name)
     let url = await sendFileToDisk(req.body.arquivo)
 
     let newdoc = await models.Documento.create({
@@ -61,6 +67,7 @@ async function create(req, res, next) {
 
 async function update(req, res, next) {
   try {
+    throwUnlessCan('update', models.Documento.name)
     delete req.body.usuario_idusuario // o dono não pode ser alterado por ninguém
     delete req.body.created_at// estes campos são automáticos
     delete req.body.updated_at

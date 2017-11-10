@@ -6,17 +6,12 @@ const models = require('../models')
 
 function defineAbilitiesFor(token) {
   const { rules, can } = AbilityBuilder.extract()
-  // TODO: ANONYMOUS_ABILITY deixar apenas o usuário se cadastrar.
-  // console.log('in define abilities');
-  // TODO: make an switch here, based on user classification
-
-  // TODO: Listar serviços que podem ser solicitados aqui:
   /*
   Se o usuário estiver logado, pq antes daqui ele passou pela checagem do token.
   */
   if (token && token.logged) {
     // console.log('in token verification')
-    can(['read', 'create', 'update'], models.Documento.name)
+    can(['read', 'create', 'update', 'findAll'], models.Documento.name)
   } else {
     can(['doLogin', 'create'], models.Usuario.name)
   }
@@ -26,8 +21,6 @@ function defineAbilitiesFor(token) {
 const ANONYMOUS_ABILITY = defineAbilitiesFor(null)
 
 module.exports = function (req, res, next) {
-  console.log('[middleware] abilities authorization check')
-  console.log(req.token);
   req.ability = (req.token && req.token.logged) ? defineAbilitiesFor( req.token) : ANONYMOUS_ABILITY
   next()
 }
