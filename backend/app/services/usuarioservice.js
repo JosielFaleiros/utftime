@@ -113,13 +113,14 @@ async function recoverPassword(req, res, next) {
 }
 
 async function confirmAccount(req, res, next) {
-  let usuario = await models.Usuario.find({where: {hashconfconta: req.params.hash}})
-  if (usuario) {
+  try {
+    let usuario = await models.Usuario.find({where: {hashconfconta: req.params.hash}})
+    if (!usuario) throw new Error("Usuário não encontrado.")
     usuario.ativo = true
     usuario.hashconfconta = null
     usuario.save()
     res.status(200).send('Sua conta foi confirmada com sucesso')
-  } else {
+  } catch (e) {
     res.redirect('/login')
   }
 }
@@ -134,35 +135,35 @@ function create(req, res, next) {
   no versão atual, não será implelemtado uma interface de cadastro de Professor de A.C,
   visto que o cadastro deste deveria ser por um administrador do sistema, e este não possui.
   */
-  // TODO: COLOCAR TUDO DENTRO DE UM TRY catch
-  if (!req.body.email || !req.body.curso_idcurso ) {
-    return res.status(200)
-    .send({ mensagem: 'Dados insuficientes ou usuário com e-mail já existe.' })
-  } else {
-    let crypto = require("crypto")
-    let hashconfconta = crypto.randomBytes(45).toString('hex')// este hash é para confirmação da conta.
+  try {
+    if (!req.body.email || !req.body.curso_idcurso ) {
+      throw new Error("Dados incompletos")
+    } else {
+      let crypto = require("crypto")
+      let hashconfconta = crypto.randomBytes(45).toString('hex')// este hash é para confirmação da conta.
 
-    //garantindo que atributos não serão alterados
-    delete req.body.ativo
-    delete req.body.hashconfconta
-    delete req.body.hashrecsenha
-    delete req.body.papel_idpapel
+      //garantindo que atributos não serão alterados
+      delete req.body.ativo
+      delete req.body.hashconfconta
+      delete req.body.hashrecsenha
+      delete req.body.papel_idpapel
 
-    let emailpieces = req.body.email.split('@')
-    //verificando se o domínio é dos alunos da UTFPR
-    if (emailpieces.length = 2 && emailpieces[1] != 'alunos.utfpr.edu.br') {
-      return res.status(200)
-      .send({ mensagem: 'Dados insuficientes ou usuário com e-mail já existe.' })
-    }
+      let emailpieces = req.body.email.split('@')
+      //verificando se o domínio é dos alunos da UTFPR
+      if (emailpieces.length = 2 && emailpieces[1] != 'alunos.utfpr.edu.br') {
+        throw new Error("Email incorreto")
+      }
 
-    //criando um hash da senha para salvar no banco.
-    bcrypt.hash(req.body.senha, 12).then( function(hash) {
+      //criando um hash da senha para salvar no banco.
+      let hash = bcrypt.hashSync(req.body.senha, 12)
       let usuario = Object.assign({}, req.body, {})
       usuario.hashconfconta = hashconfconta
       usuario.senha = hash
       models.Usuario.create(
         usuario
       ).then((result) => {
+        console.log('[create]')
+        console.log(result);
         // console.log('user created')
         let token = jwt.sign({ idusuario: '-1', s: '/login', logged: false }, config.secret, {
           algorithm: 'HS256',
@@ -178,11 +179,13 @@ function create(req, res, next) {
           mensagem: 'Conta criada com sucesso, agora clique no link enviado para o seu e-mail para concluir o cadastro.'
         })
       }).catch(function (err) {
-        // console.log(err)
         return res.status(200)
         .send({ mensagem: 'Dados insuficientes ou usuário com e-mail já existe.' })
       })
-    })
+    }
+  } catch (e) {
+    return res.status(200)
+    .send({ mensagem: 'Dados insuficientes ou usuário com e-mail já existe.' })
   }
 }
 
