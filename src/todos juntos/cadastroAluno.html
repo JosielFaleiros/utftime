@@ -136,47 +136,49 @@
       <div class="container-fluid">
         <h2>Cadastro de Aluno</h2>
         <hr style="width: 50%; margin-left: -50%;">
-        <div class="form-group nome">
-          <label for="sel1">Nome Completo:</label>
-          <input type="text" class="form-control" id="sel1">
-        </div> 
-        <div class="form-group ra">
+        <form method="GET">
+          <div class="form-group nome">
+            <label for="sel1">Nome Completo:</label>
+            <input type="text" class="form-control" id="sel1" name="sel1">
+          </div> 
+          <div class="form-group ra">
 
-          <label for="sel2">RA:</label>
-          <input type="text" class="form-control" id="sel2" placeholder="Somente números">
-        </div>
-        <div class="form-group curso">
-          <label for="sel3">Curso:</label>
-          <input type="text" class="form-control" id="sel3" placeholder="Ex: Engenharia de Software">
-        </div>
-        <div class="form-group ">
-          <label for="sel4">Email Institucional:</label>
-          <div class="input-group email">
-            <span class="input-group-addon">@</span>
-            <input type="email" class="form-control" id="sel3" placeholder="exemplo@email.com">
+            <label for="sel2">RA:</label>
+            <input type="text" class="form-control" id="sel2" placeholder="Somente números" name="sel2">
           </div>
-        </div>
+          <div class="form-group curso">
+            <label for="sel3">Curso:</label>
+            <input type="text" class="form-control" id="sel3" placeholder="Ex: Engenharia de Software" name="sel3">
+         </div>
+          <div class="form-group ">
+            <label for="sel4">Email Institucional:</label>
+           <div class="input-group email">
+              <span class="input-group-addon">@</span>
+              <input type="email" class="form-control" id="sel3" placeholder="exemplo@email.com" name="sel4">
+            </div>
+          </div>
       
-        <div class="form-group senha">
-          <h3>Criar uma senha</h3>
-          <hr>
-          <label for="sel5">Senha:</label>
-          <div class="input-group senha">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-            <input type="password" class="form-control" id="sel5" minlength="4" maxlength="8" size="8" placeholder="até 8 dígitos">
-          </div>
-          <div class="form-group">
-          <label for="sel6">Repetir a Senha:</label>
-          <div class="input-group senha">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-            <input type="password" class="form-control" id="sel6" minlength="4" maxlength="8" size="8" placeholder="a senha que você criou">
-          </div>
-        </div>
-        <div class="form-group">
-          <button type="submit" class="btn mybtn btn-lg">Confirmar</button>
-        </div>  
+          <div class="form-group senha">
+            <h3>Criar uma senha</h3>
+            <hr>
+            <label for="sel5">Senha:</label>
+            <div class="input-group senha">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+              <input type="password" class="form-control" id="sel5" minlength="4" maxlength="8" size="8" placeholder="até 8 dígitos" name="sel5">
+            </div>
+            <div class="form-group">
+              <label for="sel6">Repetir a Senha:</label>
+              <div class="input-group senha">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+               <input type="password" class="form-control" id="sel6" minlength="4" maxlength="8" size="8" placeholder="a senha que você criou" name="sel6">
+             </div>
+            </div>
+         </div>
+         <div class="form-group">
+            <button type="submit" class="btn mybtn btn-lg">Confirmar</button>
+         </div>  
+        </form>
       </div>
-    </div>
   </div>
 </div>
 <footer class="container-fluid text-center">  

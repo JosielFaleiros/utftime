@@ -118,11 +118,12 @@
       <div class="container-fluid col-md-offset-6 col-centered">
         <h2>Login Aluno</h2>
         <hr>  
-        <div class="form-group">
+        <form method="GET">
+          <div class="form-group">
           <label for="sel1">RA:</label>
           <div class="input-group ra">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input type="text" class="form-control" id="sel1" placeholder="Somente números">
+            <input type="text" class="form-control" id="sel1" placeholder="Somente números" name="sel1">
           </div>
           
         </div>
@@ -130,13 +131,14 @@
           <label for="sel2">Senha:</label>
          <div class="input-group senha">
             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-            <input type="password" class="form-control" id="sel5" minlength="4" maxlength="8" size="8" placeholder="até 8 digitos">
+            <input type="password" class="form-control" id="sel2" minlength="4" maxlength="8" size="8" placeholder="até 8 digitos" name="sel2">
           </div>
         </div>
         <p>Se você não tem uma conta, crie uma <a href="cadastroAluno.html">aqui<a></p>
         <div class="form-group">
           <button type="submit" class="btn mybtn btn-lg">Entrar</button>
         </div>
+        </form>
         <hr>
       </div>
     </div>

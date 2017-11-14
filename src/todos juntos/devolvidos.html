@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
@@ -26,12 +26,30 @@
     .ative {
       /*background-color: greenyellow;*/
       cursor: pointer;
-      background-color: hsla(240, 60%, 70%, 0.3);
+      background-color: hsla(200, 60%, 70%, 0.3);
       padding: 5%;
       border: 1px solid lightgray;
     }
     .ative:active {
       background-color:aqua;
+    }
+    .mensagem {
+      cursor: pointer;
+      background-color: hsla(200, 60%, 70%, 0.3);
+      padding: 3%;
+      border: 1px solid lightgray;
+    }
+    .mensagem:active {
+      background-color: aqua;
+    }
+    .excluir {
+      cursor: pointer;
+      background-color: hsla(200, 60%, 70%, 0.3);
+      padding: 4%;
+      border: 1px solid lightgray;
+    }
+    .excluir:active {
+      background-color: aqua;
     }
     /* Set black background color, white text and some padding */
     footer {
@@ -64,8 +82,11 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="docsRecebidos.html">Entradas</a></li>
-        <li class="active"><a href="#">Aprovados</a></li>
+        <li><a href="envioDoc.html">Enviar</a></li>
+        <li><a href="enviados.html">Enviados</a></li>
+        <li><a href="aprovadosAlunos.html">Aprovados</a></li>
+        <li class="active"><a href="#">Devolvidos</a></li>
+        <li><a href="progresso.html">Progresso</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
@@ -84,41 +105,48 @@
       <table class="table">
                   <thead>
                     <tr>
-                      <th>RA</th>
                       <th>Grupo</th>
                       <th>Ítem</th>
                       <th>Pontos</th>
+                      <th>Mensagem</th>
                       <th>Abrir</th>
+                      <th>Editar</th>
+                      <th>Excluir</th>
                     </tr>
                   </thead>
                   <tbody>
            
                     <tr class="rowTable" id="line1">
-                      <td>123412</td>
+                      
                       <td onclick="location.href='#'">Grupo 1</td>
                       <td onclick="location.href='#'">Ítem I</td>
                       <td onclick="location.href='#'" class="pencil">20</td>
-                      
+                      <td><i class="glyphicon glyphicon-comment mensagem"></i></td>
                       <td><i class="glyphicon glyphicon-save ative"></i></td>
-
+                      <td><i class="glyphicon glyphicon-edit ative"></i></td>
+                      <td><i class="glyphicon glyphicon-remove excluir"></i></td>
                     </tr>
                      
                     <tr class="rowTable">
-                      <td>124212</td>
+
                       <td onclick="location.href='#'">Grupo 2</td>
                       <td onclick="location.href='#'">Item III</td>
                       <td onclick="location.href='#'">10</td>
+                      <td><i class="glyphicon glyphicon-comment mensagem"></i></td>
                       <td><i class="glyphicon glyphicon-save ative"></i></td>
-
+                      <td><i class="glyphicon glyphicon-edit ative"></i></td>
+                     <td><i class="glyphicon glyphicon-remove excluir"></i></td>
                     </tr>
 
                     <tr class="rowTable">
-                      <td>173412</td>
+
                       <td onclick="location.href='#'">Grupo 3</td>
                       <td onclick="location.href='#'">Ítem VI</td>
                       <td onclick="location.href='#'">10</td>
+                      <td><i class="glyphicon glyphicon-comment mensagem"></i></td>
                       <td><i class="glyphicon glyphicon-save ative"></i></td>
-
+                      <td><i class="glyphicon glyphicon-edit ative"></i></td>
+                      <td><i class="glyphicon glyphicon-remove excluir"></i></td>
                     </tr>
                   </tbody>
                 </table>

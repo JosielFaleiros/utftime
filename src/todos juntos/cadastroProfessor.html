@@ -120,39 +120,40 @@
       <div class="container-fluid">
       	<h2>Cadastro de Professor</h2>
         <hr> 
-        <div class="form-group">
+        <form method="GET">
+          <div class="form-group">
           <label for="sel1">Nome Completo:</label>
-          <input type="text" class="form-control" id="sel1">
+          <input type="text" class="form-control" id="sel1" name="sel1">
         </div> 
         <div class="form-group">
 
           <label for="sel2">SEAP:</label>
-          <input type="text" class="form-control" id="sel2" placeholder="Somente números">
+          <input type="text" class="form-control" id="sel2" placeholder="Somente números" name="sel2">
         </div>
         <div class="form-group email">
-          <label for="sel4">Email Institucional:</label>
+          <label for="sel3">Email Institucional:</label>
           <div class="input-group">
             <span class="input-group-addon">@</span>
-            <input type="email" class="form-control" id="sel3" placeholder="exemplo@email.com">
+            <input type="email" class="form-control" id="sel3" placeholder="exemplo@email.com" name="sel3">
           </div>
         </div>
         <div class="form-group">
-          <label for="sel5">Criar Senha:</label>
+          <label for="sel4">Criar Senha:</label>
           <div class="input-group senha">
             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-            <input type="password" class="form-control" id="sel5" minlength="4" maxlength="8" size="8" placeholder="até 8 digitos">
+            <input type="password" class="form-control" id="sel4" minlength="4" maxlength="8" size="8" placeholder="até 8 digitos" name="sel4">
           </div>
           <div class="form-group">
-          <label for="sel6">Repetir Senha:</label>
+          <label for="sel5">Repetir Senha:</label>
           <div class="input-group senha">
             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-            <input type="password" class="form-control" id="sel6" minlength="4" maxlength="8" size="8" placeholder="a mesma senha anterior">
+            <input type="password" class="form-control" id="sel5" minlength="4" maxlength="8" size="8" placeholder="a mesma senha anterior" name="sel5">
           </div>
         </div>
         <div class="form-group">
-          <button type="submit" class="btn mybtn btn-lg">Confirmar</button>
-            
+          <button type="submit" class="btn mybtn btn-lg">Confirmar</button>  
         </div>
+        </form>
       </div>
     </div>
   </div>
