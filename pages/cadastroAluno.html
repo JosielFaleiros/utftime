@@ -17,8 +17,11 @@
 
     .mybtn {
       border: 1px solid powderblue;
-      background-color: aliceblue;
+      background-color: #1E90FF;
       margin-top: 10px; 
+      color: white;
+      font-weight: bold;
+
     }
     .btn-file {
       position: relative;
@@ -27,9 +30,11 @@
     }
     .mybtn:hover {
       background-color: skyblue;
+      color:white;
     }
     .mybtn:active {
       background-color: lightblue;
+      color:white;
     }
     .col-centered {
       margin-top: 100px;
@@ -97,7 +102,7 @@
       padding: 15px;
      
     }
-    
+    h2 {color:gray;}
     /* On small screens, set height to 'auto' for sidenav and grid */
     @media screen and (max-width: 767px) {
       .sidenav {
@@ -122,10 +127,10 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="index.html">UTFTIME</a>
+      <a class="navbar-brand" href="index.html"><strong>UTFTIME</strong></a>
     </div>
       <ul class="nav navbar-nav navbar-right">
-        <li><p>Se você é o professor entre <a href="Loginprofessor.html">aqui</a></li>
+        
       </ul> 
   </div>
 </nav>
@@ -135,7 +140,7 @@
   <div class="row content">
       <div class="container-fluid">
         <h2>Cadastro de Aluno</h2>
-        <hr style="width: 50%; margin-left: -50%;">
+       <hr> 
         <form method="GET">
           <div class="form-group nome">
             <label for="sel1">Nome Completo:</label>
