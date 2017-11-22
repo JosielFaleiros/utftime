@@ -13,7 +13,7 @@ app.get('/login', function (req, res) {
 });
 
 app.get('/cadastro', function (req, res) {
-    res.sendFile(path.join(__dirname + '/pages/Cadastro.html'))
+    res.sendFile(path.join(__dirname + '/pages/cadastroAluno.html'))
 });
 
 app.listen(3000, function () {
