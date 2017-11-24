@@ -17,9 +17,10 @@
     .mybtn {
       position: relative;
       border: 1px solid powderblue;
-      background-color: aliceblue;
+      background-color: #1E90FF;
       margin-left: 345px;
-    
+      color: white;
+      font-weight: bold;
     }
     .btn-file {
       position: relative;
@@ -28,9 +29,11 @@
     }
     .mybtn:hover {
       background-color: skyblue;
+      color: white;
     }
     .mybtn:active {
       background-color: lightblue;
+      color: white;
     }
     .btn-file input[type=file] {
       position: absolute;
@@ -116,41 +119,36 @@
     <div class="col-sm-2 sidenav">
     </div>
     <div class="col-sm-8 text-left"> 
-    <div class="container-fluid">
-      <h2>Envio de arquivos</h2>
-      <hr>  
-    <div class="form-group">
-      <label for="sel1">Selecione o Grupo:</label>
-      <select class="form-control" id="sel1">
-        <option>Grupo 1</option>
-        <option>Grupo 2</option>
-        <option>Grupo 3</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="sel2">Selecione o Item:</label>
-      <select class="form-control" id="sel2">
-        <option>aqui vai os itens relativos a cada grupo</option>
-      </select>
-    </div>
-    <div class="form-group"> 
-      <label for="sel3">Qual o seu Curso?</label>
-      <input type="text" class="form-control" id="sel3" placeholder="Ex: engenharia de software">
-    </div>
-    <div class="form-group">
-      <label for="sel4">Qnts. pontos você acredita que fez?</label>
-      <input type="text" class="form-control" id="sel4" placeholder="Ex: 20">
-    </div>
-    <div class="form-group">
-     <!-- <span class="btn btn-default btn-file">
-        Browse <input type="file">
-      </span>-->
-       <input type="file" class="filestyle" data-classButton="btn btn-primary" data-classInput="input-large">
-    </div>
-    <div class="form-group">
-      <button type="submit" class="btn mybtn btn-lg ">Enviar</button>
-    </div>
-    </div>
+      <div class="container-fluid">
+          <h2>Envio de arquivos</h2>
+          <hr>  
+        
+        <form method="post" enctype="multipart/form-data">
+          <div class="form-group">
+          <label for="sel1">Selecione o Grupo:</label>
+           <select class="form-control" id="sel1" name="grupo">
+              <option>Grupo 1</option>
+              <option>Grupo 2</option>
+              <option>Grupo 3</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="sel4">Qnts. pontos você acredita que fez?</label>
+            <input type="text" class="form-control" id="sel4" placeholder="Ex: 20" name="pontos">
+          </div>
+          <div class="form-group">
+         <!-- <span class="btn btn-default btn-file">
+            Browse <input type="file">
+          </span>-->
+           <input type="file" class="filestyle" data-classButton="btn btn-primary" data-classInput="input-large"  accept=".jpg, .jpeg, .png, .docx, .pdf, .doc" multiple name="arquivo">
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn mybtn btn-lg">Enviar</button>
+        </div>
+        </form>
+        
+        
+      </div>
     </div>
     <div class="col-sm-2 sidenav">
 
@@ -163,7 +161,7 @@
   <p>Horas Complementares</p>
 </footer>
 <!--<script type="text/javascript" src="teste.js"></script>-->
-<script type="text/javascript" src="bootstrap-filestyle.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-filestyle.min.js"></script>
 <script type="text/javascript">
  $(":file").filestyle({buttonBefore: true});
  $(":file").filestyle({classInput: "input-large"});
