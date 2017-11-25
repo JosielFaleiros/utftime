@@ -18,7 +18,6 @@ app.use('/', login);
 app.get('*', function (req, res) {
     res.redirect('/');
 });
-
 app.listen(3000, function () {
   console.log('Running in port 3000!');
 });
