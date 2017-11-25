@@ -1,12 +1,15 @@
-var Sequelize = require('sequelize');
+module.exports = function(sequelize, Sequelize){
 
-const Curso = sequelize.define('curso', {
-    email: {
-        type: Sequelize.STRING,
-        primaryKey: true
-    }
-},{
-    timestamps: false,
-    tableName: 'curso',
-    fields: []
-});
+    const Curso = sequelize.define('curso', {
+        id_curso: {
+            type: Sequelize.INTEGER,
+            primaryKey: true
+        },
+        nome_curso:{
+            type: Sequelize.STRING
+        }
+    },{
+        tableName: 'curso'
+    });
+    return Curso;
+}
