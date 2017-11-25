@@ -1,18 +1,15 @@
 var Sequelize = require('sequelize');
 
-var sequelize = new Sequelize('utftime', 'root', '', {
-  host: 'localhost',
-  dialect: 'mysql',
-});
+var conexao = require('./../models/conexao.js');
 
 var db = {};
 
-db.sequelize = sequelize;
+db.conexao = conexao;
 db.Sequelize = Sequelize;
 
-db.usuario = require('./usuario.js')(sequelize, Sequelize);  
-db.documento = require('./documento.js')(sequelize, Sequelize);  
-db.curso = require('./curso.js')(sequelize, Sequelize);  
+db.usuario = require('./usuario.js')(conexao, Sequelize);  
+db.documento = require('./documento.js')(conexao, Sequelize);  
+db.curso = require('./curso.js')(conexao, Sequelize);  
 
 db.usuario.belongsTo(db.curso, { foreignKey: 'id_curso' });
 db.documento.belongsTo(db.usuario, { foreignKey: 'dono' });
@@ -21,5 +18,5 @@ db.documento.belongsTo(db.usuario, { foreignKey: 'dono' });
   await db.curso.sync();
   await db.usuario.sync();
   await db.documento.sync();
-  await sequelize.close();
+  await conexao.close();
 })();
