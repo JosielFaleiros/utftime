@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var usuario = require('./routes/usuario');
 var cadastro = require('./routes/cadastro');
 var login = require('./routes/login');
+// var jwt = require('jsonwebtoken');
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '/pages/js')));

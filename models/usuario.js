@@ -12,6 +12,9 @@ module.exports = function( sequelize, Sequelize ){
         },
         senha: {
             type: Sequelize.STRING
+        },
+        cursoId: {
+            type: Sequelize.INTEGER
         }
     },{
         tableName: 'usuario'

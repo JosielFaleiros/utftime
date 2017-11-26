@@ -4,13 +4,14 @@ var path = require('path');
 var conexao = require('./../models/conexao.js');
 var Sequelize = require('sequelize');
 var Usuario = require('./../models/usuario.js')(conexao, Sequelize);
+var Curso = require('./../models/curso.js')(conexao, Sequelize);
 
 router.get('/cadastro', function (req, res) {
     res.sendFile(path.join(__dirname + '/../pages/cadastroAluno.html'));
 });
 
 router.post('/cadastro', async function (req, res) {
-    var campos = ['email', 'nome', 'ra', 'id_curso', 'senha'];
+    var campos = ['email', 'nome', 'ra', 'cursoId', 'senha'];
     var tamanho = campos.length;
     for(let i = 0; i < tamanho; ++i){
         if(!req.body[campos[i]]){
@@ -18,21 +19,40 @@ router.post('/cadastro', async function (req, res) {
                 "error": true,
                 "mensagem": "preencha todos os campos!"
             });
-            await res.end();
+            res.end();
             return;
         }
     }
-    if(!/^[a-z]*[0-1]*[a-z]*@alunos\.utfpr\.edu\.br$/.test(req.body.email)){
+    if(!/^[a-z]*[0-9]*[a-z]*@alunos\.utfpr\.edu\.br$/.test(req.body.email)){
         await res.json({
             "error": true,
             "mensagem": "email inválido!"
         });
-        await res.end();
+        res.end();
+        return;
+    }
+    let curso = await Curso.findById(req.body.cursoId);
+    if(!curso){
+        await res.json({
+            "error": true,
+            "mensagem": "curso não cadastrado!"
+        });
+        res.end();
         return;
     }
     let usuario = await Usuario.findById(req.body.email);
     if(!usuario){
-        await Usuario.create(req.body);
+        await Usuario.create({
+            nome: req.body.nome,
+            email: req.body.email,
+            ra: req.body.ra,
+            senha: req.body.senha,
+            cursoId: req.body.cursoId
+        });
+        await res.json({
+            "error": false,
+            "mensagem": "usuário cadastrado com sucesso!"
+        });
         await res.end();
         return;
     } else {
@@ -41,9 +61,8 @@ router.post('/cadastro', async function (req, res) {
             "mensagem": "email já cadastrado!"
         });          
     }
-    await res.end();
+    res.end();
 });
-
 
 
 module.exports = router;
