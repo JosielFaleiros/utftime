@@ -13,6 +13,7 @@ router.get('/cadastro', function (req, res) {
 router.post('/cadastro', async function (req, res) {
     var campos = ['email', 'nome', 'ra', 'cursoId', 'senha'];
     var tamanho = campos.length;
+    console.log(req.body)
     for(let i = 0; i < tamanho; ++i){
         if(!req.body[campos[i]]){
             await res.json({
@@ -23,7 +24,7 @@ router.post('/cadastro', async function (req, res) {
             return;
         }
     }
-    if(!/^[a-z]*[0-9]*[a-z]*@alunos\.utfpr\.edu\.br$/.test(req.body.email)){
+    if(!/^[a-z]*@alunos\.utfpr\.edu\.br$/.test(req.body.email)){
         await res.json({
             "error": true,
             "mensagem": "email inválido!"

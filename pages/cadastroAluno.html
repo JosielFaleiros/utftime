@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="/js/cadastro.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
     /* Remove the navbar's default margin-bottom and rounded borders */ 
@@ -141,7 +142,7 @@
       <div class="container-fluid">
         <h2>Cadastro de Aluno</h2>
        <hr> 
-        <form method="GET">
+        <form method="POST">
           <div class="form-group nome">
             <label for="sel1">Nome Completo:</label>
             <input type="text" class="form-control" id="sel1" name="sel1">
@@ -180,7 +181,7 @@
             </div>
          </div>
          <div class="form-group">
-            <button type="submit" class="btn mybtn btn-lg">Confirmar</button>
+            <input id="enviar" type="submit" class="btn mybtn btn-lg" value="Confirmar">
          </div>  
         </form>
       </div>
