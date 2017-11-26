@@ -24,7 +24,7 @@ router.post('/cadastro', async function (req, res) {
             return;
         }
     }
-    if(!/^[a-z]*@alunos\.utfpr\.edu\.br$/.test(req.body.email)){
+    if(!/^[a-z0-9]*@alunos\.utfpr\.edu\.br$/.test(req.body.email)){
         await res.json({
             "error": true,
             "mensagem": "email inválido!"
