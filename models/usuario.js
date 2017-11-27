@@ -15,6 +15,9 @@ module.exports = function( sequelize, Sequelize ){
         },
         cursoId: {
             type: Sequelize.INTEGER
+        },
+        token: {
+            type: Sequelize.STRING
         }
     },{
         tableName: 'usuario'
