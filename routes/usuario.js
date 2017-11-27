@@ -3,18 +3,19 @@ var router = express.Router();
 var path = require('path');
 var jwt = require('jsonwebtoken');
 
-router.get('/enviar', function (req, res) {
+
+router.get('/enviar', async function (req, res) {
     if(!req.headers.authentication){
         res.redirect('/login');
         return;
     }
-    jwt.verify(req.headers.authentication, process.env.SECRET, function(err, decoded){
+    jwt.verify(req.headers.authentication, config.SECRET, function(err, decoded){
         if(err){
             res.redirect('/login'); 
             return;   
         }
-        res.sendFile(path.join(__dirname + '/../pages/envioDoc.html'));
-    });
+    }); 
+    res.sendFile(path.join(__dirname + '/../pages/envioDoc.html'));    
 });
 
 router.get('/devolvidos', function (req, res) {
@@ -22,7 +23,7 @@ router.get('/devolvidos', function (req, res) {
         res.redirect('/login');
         return;
     }
-    jwt.verify(req.headers.authentication, process.env.SECRET, function(err, decoded){
+    jwt.verify(req.headers.authentication, config.SECRET, function(err, decoded){
         if(err){
             res.redirect('/login'); 
             return;   
@@ -36,7 +37,7 @@ router.get('/enviados', function (req, res) {
         res.redirect('/login');
         return;
     }
-    jwt.verify(req.headers.authentication, process.env.SECRET, function(err, decoded){
+    jwt.verify(req.headers.authentication, config.SECRET, function(err, decoded){
         if(err){
             res.redirect('/login'); 
             return;   
@@ -50,7 +51,7 @@ router.get('/progresso', function (req, res) {
         res.redirect('/login');
         return;
     }
-    jwt.verify(req.headers.authentication, process.env.SECRET, function(err, decoded){
+    jwt.verify(req.headers.authentication, config.SECRET, function(err, decoded){
         if(err){
             res.redirect('/login'); 
             return;   
@@ -64,7 +65,7 @@ router.get('/aprovados', function (req, res) {
         res.redirect('/login');
         return;
     }
-    jwt.verify(req.headers.authentication, process.env.SECRET, function(err, decoded){
+    jwt.verify(req.headers.authentication, config.SECRET, function(err, decoded){
         if(err){
             res.redirect('/login'); 
             return;   

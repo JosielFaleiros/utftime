@@ -25,7 +25,8 @@ $(document).ready(function(){
                 senha: $("input[name=sel2").val()
             }),
             success: function(result){
-                alert(result.token);
+                localStorage.setItem('jwt', result.token);
+                window.location.href = '/';
             }
         });
 

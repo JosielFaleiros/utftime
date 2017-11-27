@@ -10,6 +10,7 @@ app.use(express.static(path.join(__dirname, '/pages/js/')));
 
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname + '/pages/index.html'));
+
 });
 app.use('/', usuario);
 app.use('/', cadastro);
@@ -17,6 +18,4 @@ app.use('/', login);
 app.get('*', function (req, res) {
     res.redirect('/');
 });
-app.listen(3000, function () {
-  console.log('Running in port 3000!');
-});
+app.listen(4321);

@@ -1,6 +1,6 @@
 var Sequelize = require('sequelize');
-
-module.exports = new Sequelize(process.env.DATABASE, process.env.USUARIO, process.env.PASSWORD, {
-  host: process.env.HOST,
-  dialect: process.env.DIALECT,
+var config = require('./../config/config.js')
+module.exports = new Sequelize(config.DATABASE, config.USUARIO, config.PASSWORD, {
+  host: config.HOST,
+  dialect: config.DIALECT,
 });

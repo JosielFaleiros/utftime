@@ -40,7 +40,6 @@ router.post('/login', async function (req, res) {
         usuario.update({
             token: token
         }); 
-        res.redirect('/enviar');    
     } else {
         res.json({
             "error": true,
