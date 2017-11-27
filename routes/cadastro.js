@@ -32,9 +32,9 @@ router.post('/cadastro', async function (req, res) {
         res.end();
         return;
     }
-    let curso = await Curso.findById(req.body.cursoId);
+    let curso = await Curso.findById(parseInt(req.body.cursoId));
     if(!curso){
-        await res.json({
+        res.json({
             "error": true,
             "mensagem": "curso não cadastrado!"
         });
@@ -42,27 +42,26 @@ router.post('/cadastro', async function (req, res) {
         return;
     }
     let usuario = await Usuario.findById(req.body.email);
-    if(!usuario){
+    if(!usuario){        
         await Usuario.create({
             nome: req.body.nome,
             email: req.body.email,
             ra: req.body.ra,
             senha: req.body.senha,
-            cursoId: req.body.cursoId
+            cursoId: parseInt(req.body.cursoId)
         });
         await res.json({
             "error": false,
             "mensagem": "usuário cadastrado com sucesso!"
         });
-        await res.end();
+    //    res.redirect('/login');
         return;
     } else {
-        await res.json({
+        res.json({
             "error": true,
             "mensagem": "email já cadastrado!"
         });          
     }
-    res.end();
 });
 
 

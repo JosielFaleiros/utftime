@@ -28,7 +28,7 @@ $(document).ready(function(){
             data: JSON.stringify({ 
                 nome: $("input[name=sel1]").val(),
                 ra: $("input[name=sel2]").val(),
-                cursoId: $("input[name=sel3]").val(),
+                cursoId: $('select[name=sel3]').val(),
                 email: $("input[name=sel4]").val(),
                 senha: $("input[name=sel5]").val()
             }),
