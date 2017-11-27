@@ -11,6 +11,11 @@ $(document).ready(function(){
             }
         }
 
+        if( !/^[a-z0-9]*@alunos\.utfpr\.edu\.br$/.test( $("input[name=sel1]").val()) ){
+            alert(`Email inválido!`);
+            return;
+        }
+
         $.ajax({
             method: 'GET',
             url: "/login",
