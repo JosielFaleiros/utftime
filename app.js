@@ -8,7 +8,7 @@ var login = require('./routes/login');
 // var jwt = require('jsonwebtoken');
 
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, '/pages/js')));
+app.use(express.static(path.join(__dirname, '/pages/js/')));
 
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname + '/pages/index.html'));
