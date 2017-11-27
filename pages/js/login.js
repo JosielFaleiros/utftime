@@ -17,15 +17,15 @@ $(document).ready(function(){
         }
 
         $.ajax({
-            method: 'GET',
-            url: "/login",
+            method: 'POST',
+            url: '/login',
             contentType: 'application/json', 
             data: JSON.stringify({ 
-                email: $("input[name=email").val(),
-                senha: $("input[name=senha").val()
+                email: $("input[name=sel1").val(),
+                senha: $("input[name=sel2").val()
             }),
             success: function(result){
-                alert(result.mensagem);
+                alert(result.token);
             }
         });
 
